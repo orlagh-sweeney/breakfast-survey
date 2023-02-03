@@ -43,4 +43,11 @@ def welcome():
     the survey.""")
 
 
-welcome()
+def main():
+    """
+    Run all program functions
+    """
+    welcome()
+
+
+main()
