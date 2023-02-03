@@ -15,6 +15,13 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('breakfast_survey')
 
+data = SHEET.worksheet('bkdata').get_all_values()
+
+headers = data.pop(0)
+df = pd.DataFrame(data, columns=headers)
+df.head()
+print(df)
+
 
 def welcome():
     """
