@@ -88,18 +88,35 @@ def get_total_females():
     return female_total
 
 
-def calculate_q1_gender_results(male_total, female_total):
+def get_yes_females():
     """
-    This function calculates the gender results for question 1
+    This function get the total number of females
+    who eat breakfast
+    """
+    female_yes = df[(df['question 1'] == 'Yes') & (df['gender'] == 'Female')]\
+        .value_counts().sum()
+
+    return female_yes
+
+
+def get_yes_males():
+    """
+    This function get the total number of females
+    who eat breakfast
     """
     male_yes = df[(df['question 1'] == 'Yes') & (df['gender'] == 'Male')]\
         .value_counts().sum()
 
-    female_yes = df[(df['question 1'] == 'Yes') & (df['gender'] == 'Female')]\
-        .value_counts().sum()
+    return male_yes
 
+
+def calculate_q1_gender_results(male_total, female_total, female_yes, male_yes):
+    """
+    This function calculates the gender results for question 1
+    """
     female_percent = calculate.percentage(female_yes, female_total)
     print(f"{female_percent}% of females eat breakfast\n")
+
     male_percent = calculate.percentage(male_yes, male_total)
     print(f"{male_percent}% of males eat breakfast\n")
 
@@ -280,8 +297,10 @@ def main():
     # welcome()
     route_selection()
     male_total = get_total_males()
+    male_yes = get_yes_males()
     female_total = get_total_females()
-    calculate_q1_gender_results(male_total, female_total)
+    female_yes = get_yes_females()
+    calculate_q1_gender_results(male_total, female_total, female_yes, male_yes)
     calculate_q2_gender_results(male_total, female_total)
     calculate_q3_gender_results(male_total, female_total)
 
