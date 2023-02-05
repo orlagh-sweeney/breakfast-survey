@@ -22,12 +22,12 @@ df = pd.DataFrame(data, columns=headers)
 df.head()
 # print(df)
 
+
 def get_total_males():
     """
     This function calculates the total numbers of males
     """
     male_total = df['gender'].str.contains('Male').sum()
-    print(male_total)
     return male_total
 
 
@@ -36,7 +36,6 @@ def get_total_females():
     This function calculates the total number of females
     """
     female_total = df['gender'].str.contains('Female').sum()
-    print(female_total)
     return female_total
 
 
@@ -62,7 +61,7 @@ def calculate_q2_gender_results(male_total, female_total):
     """
     print("Percentage of males and femles who eat breakfast on a given \
 number of days per week\n")
-   
+
     female_1 = df[(df['question 2'] == '1') & (df['gender'] == 'Male')]\
         .value_counts().sum()
     male_1 = df[(df['question 2'] == '1') & (df['gender'] == 'Female')]\
@@ -77,7 +76,7 @@ number of days per week\n")
         .value_counts().sum()
     male_3 = df[(df['question 2'] == '3') & (df['gender'] == 'Female')]\
         .value_counts().sum()
-    
+
     female_4 = df[(df['question 2'] == '4') & (df['gender'] == 'Male')]\
         .value_counts().sum()
     male_4 = df[(df['question 2'] == '4') & (df['gender'] == 'Female')]\
@@ -92,12 +91,12 @@ number of days per week\n")
         .value_counts().sum()
     male_6 = df[(df['question 2'] == '6') & (df['gender'] == 'Female')]\
         .value_counts().sum()
-    
+
     female_7 = df[(df['question 2'] == '7') & (df['gender'] == 'Male')]\
         .value_counts().sum()
     male_7 = df[(df['question 2'] == '7') & (df['gender'] == 'Female')]\
         .value_counts().sum()
-    
+
     f1_p = (female_1 / female_total) * 100
     f2_p = (female_2 / female_total) * 100
     f3_p = (female_3 / female_total) * 100
@@ -136,7 +135,56 @@ number of days per week\n")
         f"{m6_p}%",
         f"{m7_p}%",
         ])
-    
+
+    print(table)
+
+
+def calculate_q3_gender_results(male_total, female_total):
+    """
+    This function calculates the gender results for question 1
+    """
+    male_work = df[(df['question 3'] == 'Work') & (df['gender'] == 'Male')]\
+        .value_counts().sum()
+    male_home = df[(df['question 3'] == 'Home') & (df['gender'] == 'Male')]\
+        .value_counts().sum()
+    male_way = df[(df['question 3'] == 'Way') & (df['gender'] == 'Male')]\
+        .value_counts().sum()
+
+    female_work = df[(df['question 3'] == 'Work') & (df['gender'] == 'Female')]\
+        .value_counts().sum()
+    female_home = df[(df['question 3'] == 'Home') & (df['gender'] == 'Female')]\
+        .value_counts().sum()
+    female_way = df[(df['question 3'] == 'Way') & (df['gender'] == 'Female')]\
+        .value_counts().sum()
+
+    mw_p = (male_work / male_total) * 100
+    mh_p = (male_home / male_total) * 100
+    mo_p = (male_way / male_total) * 100
+
+    fw_p = (female_work / female_total) * 100
+    fh_p = (female_home / female_total) * 100
+    fo_p = (female_way / female_total) * 100
+
+    table = PrettyTable()
+    table.field_names = [
+        "Breakfast Location",
+        "At Home",
+        "At Work",
+        "On the way to work",
+        ]
+    table.add_row([
+        "Female",
+        f"{fw_p}%",
+        f"{fh_p}%",
+        f"{fo_p}%",
+    ])
+    table.add_row([
+        "Male",
+        f"{mw_p}%",
+        f"{mh_p}%",
+        f"{mo_p}%",
+    ])
+
     print(table)
 
 
@@ -185,5 +233,6 @@ def main():
     female_total = get_total_females()
     calculate_q1_gender_results(male_total, female_total)
     calculate_q2_gender_results(male_total, female_total)
+    calculate_q3_gender_results(male_total, female_total)
 
 main()
