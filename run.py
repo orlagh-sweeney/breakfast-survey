@@ -23,6 +23,53 @@ df.head()
 # print(df)
 
 
+def route_selection():
+    """
+    This function allows the user to select if they want
+    to view results or take the survey
+    """
+    while True:
+        print("To view the survey results type '1' below.")
+        print("To take the survey type '2' below.")
+
+        route_choice = input("Type your choice here then press enter:\n")
+
+        if route_choice == '1':
+            results_selection()
+            break
+        if route_choice == '2':
+            print('Take survey')
+            break
+
+        print('Invalid choice. Please try again.\n')
+
+
+def results_selection():
+    """
+    This function allows the user to select in which form they
+    would like to view the results
+    """
+    while True:
+        print("Please select from the following options.")
+        print("1 - View results by gender")
+        print("2 - View results by age group")
+        print("3 - View survey summary")
+
+        analysis_type = input("Type your choice here then press enter:\n")
+
+        if analysis_type == '1':
+            print('View gender results')
+            break
+        if analysis_type == '2':
+            print('View age group survey')
+            break
+        if analysis_type == '3':
+            print('View summary')
+            break
+
+        print('Invalid choice. Please try again.\n')
+
+
 def get_total_males():
     """
     This function calculates the total numbers of males
@@ -229,10 +276,12 @@ def main():
     Run all program functions
     """
     # welcome()
+    route_selection()
     male_total = get_total_males()
     female_total = get_total_females()
     calculate_q1_gender_results(male_total, female_total)
     calculate_q2_gender_results(male_total, female_total)
     calculate_q3_gender_results(male_total, female_total)
+
 
 main()
