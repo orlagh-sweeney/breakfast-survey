@@ -4,6 +4,7 @@ import plotext as plt
 from prettytable import PrettyTable
 import pandas as pd
 import numpy as np
+import calculate
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -97,9 +98,9 @@ def calculate_q1_gender_results(male_total, female_total):
     female_yes = df[(df['question 1'] == 'Yes') & (df['gender'] == 'Female')]\
         .value_counts().sum()
 
-    female_percent = round((female_yes / female_total) * 100)
+    female_percent = calculate.percentage(female_yes, female_total)
     print(f"{female_percent}% of females eat breakfast\n")
-    male_percent = round((male_yes / male_total) * 100)
+    male_percent = calculate.percentage(male_yes, male_total)
     print(f"{male_percent}% of males eat breakfast\n")
 
 
@@ -110,56 +111,56 @@ def calculate_q2_gender_results(male_total, female_total):
     print("Percentage of males and femles who eat breakfast on a given \
 number of days per week\n")
 
-    female_1 = df[(df['question 2'] == '1') & (df['gender'] == 'Male')]\
+    female_1 = df[(df['question 2'] == '1') & (df['gender'] == 'Female')]\
         .value_counts().sum()
-    male_1 = df[(df['question 2'] == '1') & (df['gender'] == 'Female')]\
-        .value_counts().sum()
-
-    female_2 = df[(df['question 2'] == '2') & (df['gender'] == 'Male')]\
-        .value_counts().sum()
-    male_2 = df[(df['question 2'] == '2') & (df['gender'] == 'Female')]\
+    male_1 = df[(df['question 2'] == '1') & (df['gender'] == 'Male')]\
         .value_counts().sum()
 
-    female_3 = df[(df['question 2'] == '3') & (df['gender'] == 'Male')]\
+    female_2 = df[(df['question 2'] == '2') & (df['gender'] == 'Feale')]\
         .value_counts().sum()
-    male_3 = df[(df['question 2'] == '3') & (df['gender'] == 'Female')]\
-        .value_counts().sum()
-
-    female_4 = df[(df['question 2'] == '4') & (df['gender'] == 'Male')]\
-        .value_counts().sum()
-    male_4 = df[(df['question 2'] == '4') & (df['gender'] == 'Female')]\
+    male_2 = df[(df['question 2'] == '2') & (df['gender'] == 'Male')]\
         .value_counts().sum()
 
-    female_5 = df[(df['question 2'] == '5') & (df['gender'] == 'Male')]\
+    female_3 = df[(df['question 2'] == '3') & (df['gender'] == 'Female')]\
         .value_counts().sum()
-    male_5 = df[(df['question 2'] == '5') & (df['gender'] == 'Female')]\
-        .value_counts().sum()
-
-    female_6 = df[(df['question 2'] == '6') & (df['gender'] == 'Male')]\
-        .value_counts().sum()
-    male_6 = df[(df['question 2'] == '6') & (df['gender'] == 'Female')]\
+    male_3 = df[(df['question 2'] == '3') & (df['gender'] == 'Male')]\
         .value_counts().sum()
 
-    female_7 = df[(df['question 2'] == '7') & (df['gender'] == 'Male')]\
+    female_4 = df[(df['question 2'] == '4') & (df['gender'] == 'Female')]\
         .value_counts().sum()
-    male_7 = df[(df['question 2'] == '7') & (df['gender'] == 'Female')]\
+    male_4 = df[(df['question 2'] == '4') & (df['gender'] == 'Male')]\
         .value_counts().sum()
 
-    f1_p = (female_1 / female_total) * 100
-    f2_p = (female_2 / female_total) * 100
-    f3_p = (female_3 / female_total) * 100
-    f4_p = (female_4 / female_total) * 100
-    f5_p = (female_5 / female_total) * 100
-    f6_p = (female_6 / female_total) * 100
-    f7_p = (female_7 / female_total) * 100
+    female_5 = df[(df['question 2'] == '5') & (df['gender'] == 'Female')]\
+        .value_counts().sum()
+    male_5 = df[(df['question 2'] == '5') & (df['gender'] == 'Male')]\
+        .value_counts().sum()
 
-    m1_p = (male_1 / male_total) * 100
-    m2_p = (male_2 / male_total) * 100
-    m3_p = (male_3 / male_total) * 100
-    m4_p = (male_4 / male_total) * 100
-    m5_p = (male_5 / male_total) * 100
-    m6_p = (male_6 / male_total) * 100
-    m7_p = (male_7 / male_total) * 100
+    female_6 = df[(df['question 2'] == '6') & (df['gender'] == 'Female')]\
+        .value_counts().sum()
+    male_6 = df[(df['question 2'] == '6') & (df['gender'] == 'Male')]\
+        .value_counts().sum()
+
+    female_7 = df[(df['question 2'] == '7') & (df['gender'] == 'Female')]\
+        .value_counts().sum()
+    male_7 = df[(df['question 2'] == '7') & (df['gender'] == 'Male')]\
+        .value_counts().sum()
+
+    f1_p = calculate.percentage(female_1, female_total)
+    f2_p = calculate.percentage(female_2, female_total)
+    f3_p = calculate.percentage(female_3, female_total)
+    f4_p = calculate.percentage(female_4, female_total)
+    f5_p = calculate.percentage(female_5, female_total) 
+    f6_p = calculate.percentage(female_6, female_total)
+    f7_p = calculate.percentage(female_7, female_total)
+
+    m1_p = calculate.percentage(male_1, male_total)
+    m2_p = calculate.percentage(male_2, male_total)
+    m3_p = calculate.percentage(male_3, male_total)
+    m4_p = calculate.percentage(male_4, male_total)
+    m5_p = calculate.percentage(male_5, male_total)
+    m6_p = calculate.percentage(male_6, male_total)
+    m7_p = calculate.percentage(male_7, male_total)
 
     table = PrettyTable()
     table.field_names = ["No. of Days Per Week", "1", "2", "3", "4", "5", "6", "7"]
@@ -195,23 +196,23 @@ def calculate_q3_gender_results(male_total, female_total):
         .value_counts().sum()
     male_home = df[(df['question 3'] == 'Home') & (df['gender'] == 'Male')]\
         .value_counts().sum()
-    male_way = df[(df['question 3'] == 'Way') & (df['gender'] == 'Male')]\
+    male_way = df[(df['question 3'] == 'On the way to work') & (df['gender'] == 'Male')]\
         .value_counts().sum()
 
     female_work = df[(df['question 3'] == 'Work') & (df['gender'] == 'Female')]\
         .value_counts().sum()
     female_home = df[(df['question 3'] == 'Home') & (df['gender'] == 'Female')]\
         .value_counts().sum()
-    female_way = df[(df['question 3'] == 'Way') & (df['gender'] == 'Female')]\
+    female_way = df[(df['question 3'] == 'On the way to work') & (df['gender'] == 'Female')]\
         .value_counts().sum()
 
-    mw_p = (male_work / male_total) * 100
-    mh_p = (male_home / male_total) * 100
-    mo_p = (male_way / male_total) * 100
+    mw_p = calculate.percentage(male_work, male_total)
+    mh_p = calculate.percentage(male_home, male_total)
+    mo_p = calculate.percentage(male_way, male_total)
 
-    fw_p = (female_work / female_total) * 100
-    fh_p = (female_home / female_total) * 100
-    fo_p = (female_way / female_total) * 100
+    fw_p = calculate.percentage(female_work, female_total)
+    fh_p = calculate.percentage(female_home, female_total)
+    fo_p = calculate.percentage(female_way, female_total)
 
     table = PrettyTable()
     table.field_names = [
@@ -236,40 +237,40 @@ def calculate_q3_gender_results(male_total, female_total):
     print(table)
 
 
-# def welcome():
-#     """
-#     Displays a welcome message and introduction to the survey
-#     """
-#     print(
-#         """\
-#                              #        #                   #
-#  ####                        #       ###                  #
-#  #   #                       #  #    #                   ###
-#  ####   # #     ##     ###   # #    ###     ###   ####    #
-#  #   #  ## #   # ##   #  #   ###     #     #  #   ##      # #
-#  #   #  #      ##     #  #   #  #    #     #  #     ##    # #
-#  ####   #       ###    ####  #  #    #      ####  ####     #
+# # def welcome():
+# #     """
+# #     Displays a welcome message and introduction to the survey
+# #     """
+# #     print(
+# #         """\
+# #                              #        #                   #
+# #  ####                        #       ###                  #
+# #  #   #                       #  #    #                   ###
+# #  ####   # #     ##     ###   # #    ###     ###   ####    #
+# #  #   #  ## #   # ##   #  #   ###     #     #  #   ##      # #
+# #  #   #  #      ##     #  #   #  #    #     #  #     ##    # #
+# #  ####   #       ###    ####  #  #    #      ####  ####     #
 
 
-#          ##
-#         #  #
-#          #     #  #   # #    #  #    ##    #  #
-#           #    #  #   ## #   #  #   # ##   #  #
-#         #  #   #  #   #       ##    ##     ## #
-#          ##     ###   #       ##     ###     ##
-#                                            #  #
-#                                             ##
-#     """
-#     )
+# #          ##
+# #         #  #
+# #          #     #  #   # #    #  #    ##    #  #
+# #           #    #  #   ## #   #  #   # ##   #  #
+# #         #  #   #  #   #       ##    ##     ## #
+# #          ##     ###   #       ##     ###     ##
+# #                                            #  #
+# #                                             ##
+# #     """
+# #     )
 
-#     print(
-#         """
-#         Welcome to the Breakfast Survey.\n
-#         This survey analyses breakfast eating habits based on gender and age.\n
-#         You can view the results, read a summary or add to the data by
-#         completing the survey.
-#         """
-#     )
+# #     print(
+# #         """
+# #         Welcome to the Breakfast Survey.\n
+# #         This survey analyses breakfast eating habits based on gender and age.\n
+# #         You can view the results, read a summary or add to the data by
+# #         completing the survey.
+# #         """
+# #     )
 
 
 def main():
