@@ -3,6 +3,7 @@ from google.oauth2.service_account import Credentials
 import plotext as plt
 from prettytable import PrettyTable
 import pandas as pd
+import numpy as np
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
