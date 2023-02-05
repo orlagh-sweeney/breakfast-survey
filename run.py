@@ -30,30 +30,39 @@ def get_total_males():
     print(male_total)
     return male_total
 
+
 def get_total_females():
     """
     This function calculates the total number of females
     """
     female_total = df['gender'].str.contains('Female').sum()
-    return female_total
     print(female_total)
+    return female_total
 
-def calculate_gender_results(male_total, female_total):
+
+def calculate_q1_gender_results(male_total, female_total):
     """
-    This function calculates the genders results
+    This function calculates the gender results for question 1
     """
-    # calculate question 1
     male_yes = df[(df['question 1'] == 'Yes') & (df['gender'] == 'Male')]\
         .value_counts().sum()
 
     female_yes = df[(df['question 1'] == 'Yes') & (df['gender'] == 'Female')]\
         .value_counts().sum()
 
-    female_percent = (female_yes / female_total) * 100
-    print(female_percent)
-    male_percent = (male_yes / male_total) * 100
+    female_percent = round((female_yes / female_total) * 100)
+    print(f"{female_percent}% of females eat breakfast\n")
+    male_percent = round((male_yes / male_total) * 100)
+    print(f"{male_percent}% of males eat breakfast\n")
 
-    # calculate question 2
+
+def calculate_q2_gender_results(male_total, female_total):
+    """
+    This function calculates the genders results for question 2
+    """
+    print("Percentage of males and femles who eat breakfast on a given \
+number of days per week\n")
+   
     female_1 = df[(df['question 2'] == '1') & (df['gender'] == 'Male')]\
         .value_counts().sum()
     male_1 = df[(df['question 2'] == '1') & (df['gender'] == 'Female')]\
@@ -89,22 +98,46 @@ def calculate_gender_results(male_total, female_total):
     male_7 = df[(df['question 2'] == '7') & (df['gender'] == 'Female')]\
         .value_counts().sum()
     
-    # female_1_percent = (female_1 / female_total) * 100
-    # female_2_percent = (female_2 / female_total) * 100
-    # female_3_percent = (female_3 / female_total) * 100
-    # female_4_percent = (female_4 / female_total) * 100
-    # female_5_percent = (female_5 / female_total) * 100
-    # female_6_percent = (female_6 / female_total) * 100
-    # female_7_percent = (female_7 / female_total) * 100
+    f1_p = (female_1 / female_total) * 100
+    f2_p = (female_2 / female_total) * 100
+    f3_p = (female_3 / female_total) * 100
+    f4_p = (female_4 / female_total) * 100
+    f5_p = (female_5 / female_total) * 100
+    f6_p = (female_6 / female_total) * 100
+    f7_p = (female_7 / female_total) * 100
 
-    # male_1_percent = (male_1 / male_total) * 100
-    # male_2_percent = (male_2 / male_total) * 100
-    # male_3_percent = (male_3 / male_total) * 100
-    # male_4_percent = (male_4 / male_total) * 100
-    # male_5_percent = (male_5 / male_total) * 100
-    # male_6_percent = (male_6 / male_total) * 100
-    # male_7_percent = (male_7 / male_total) * 100
+    m1_p = (male_1 / male_total) * 100
+    m2_p = (male_2 / male_total) * 100
+    m3_p = (male_3 / male_total) * 100
+    m4_p = (male_4 / male_total) * 100
+    m5_p = (male_5 / male_total) * 100
+    m6_p = (male_6 / male_total) * 100
+    m7_p = (male_7 / male_total) * 100
 
+    table = PrettyTable()
+    table.field_names = ["No. of Days Per Week", "1", "2", "3", "4", "5", "6", "7"]
+    table.add_row([
+        "Female",
+        f"{f1_p}%",
+        f"{f2_p}%",
+        f"{f3_p}%",
+        f"{f4_p}%",
+        f"{f5_p}%",
+        f"{f6_p}%",
+        f"{f7_p}%",
+        ])
+    table.add_row([
+        "Male",
+        f"{m1_p}%",
+        f"{m2_p}%",
+        f"{m3_p}%",
+        f"{m4_p}%",
+        f"{m5_p}%",
+        f"{m6_p}%",
+        f"{m7_p}%",
+        ])
+    
+    print(table)
 
 
 # def welcome():
@@ -150,6 +183,7 @@ def main():
     # welcome()
     male_total = get_total_males()
     female_total = get_total_females()
-    calculate_gender_results(male_total, female_total)
+    calculate_q1_gender_results(male_total, female_total)
+    calculate_q2_gender_results(male_total, female_total)
 
 main()
