@@ -60,7 +60,7 @@ def results_selection():
         analysis_type = input("Type your choice here then press enter:\n")
 
         if analysis_type == '1':
-            print('View gender results')
+            question_selection()
             break
         if analysis_type == '2':
             print('View age group survey')
@@ -88,8 +88,18 @@ def question_selection():
 
         choice = input("Type your choice here then press enter:\n")
 
+        male_total = get_total_males()
+        male_yes = get_yes_males()
+        female_total = get_total_females()
+        female_yes = get_yes_females()
+
         if choice == '1':
-            print('Q1')
+            calculate_q1_gender_results(
+                male_total=male_total,
+                male_yes=male_yes,
+                female_total=female_total,
+                female_yes=female_yes
+            )
 
         elif choice == '2':
             print('Q2')
@@ -336,13 +346,9 @@ def main():
     """
     # welcome()
     route_selection()
-    male_total = get_total_males()
-    male_yes = get_yes_males()
-    female_total = get_total_females()
-    female_yes = get_yes_females()
-    calculate_q1_gender_results(male_total, female_total, female_yes, male_yes)
-    calculate_q2_gender_results(male_total, female_total)
-    calculate_q3_gender_results(male_total, female_total)
+    # calculate_q1_gender_results(male_total, female_total, female_yes, male_yes)
+    # calculate_q2_gender_results(male_total, female_total)
+    # calculate_q3_gender_results(male_total, female_total)
 
 
 main()
