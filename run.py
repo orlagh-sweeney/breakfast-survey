@@ -5,6 +5,7 @@ from prettytable import PrettyTable
 import pandas as pd
 import numpy as np
 import calculate
+from tabulate import tabulate
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -122,21 +123,36 @@ def question_selection():
     return choice
 
 
-def get_percentages(df, groupby_col, question_col):
+def get_percentages(df_raw, groupby_col, question_col):
     """
     This function calculates the total numbers of males
     """
-    df_group = df.groupby([groupby_col, question_col]).size().reset_index()
+    df_group = df_raw.groupby([groupby_col, question_col]).size().reset_index()
     df_group.rename(columns={0: 'counts'}, inplace=True)
     label_total_by_group = f'total_by_{groupby_col}'
     df_group[label_total_by_group] = \
         df_group.groupby(groupby_col)['counts'].transform(sum)
-    df_group['percentage'] = \
-        df_group['counts'] / df_group[label_total_by_group] 
-    print(df_group)
+    df_group['percentage'] = np.round(
+        df_group['counts'] / df_group[label_total_by_group] * 100
+        )
+    df_group['percentage'] = df_group['percentage'].apply(
+        lambda x: f'{int(x)}%'
+    )
+    
+    return df_group
 
-get_percentages(df, groupby_col='gender', question_col='question 1')
 
+def print_results_as_table(df_raw, groupby_col, question_col):
+    percentages = get_percentages(df_raw, groupby_col, question_col)
+    percentages = pd.pivot(
+        percentages,
+        index=groupby_col,
+        columns=question_col,
+        values='percentage'
+    )
+    print(tabulate(percentages, headers='keys', tablefmt='psql'))
+
+print_results_as_table(df_raw=df, groupby_col='gender', question_col='question 1')
 
 def calculate_q1_gender_results(male_total, female_total, female_yes, male_yes):
     """
