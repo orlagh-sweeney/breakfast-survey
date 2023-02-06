@@ -72,6 +72,46 @@ def results_selection():
         print('Invalid choice. Please try again.\n')
 
 
+def question_selection():
+    """
+    This function allows the user to selected which question
+    they would like to set the results for
+    """
+    while True:
+        print("Please select a question from the following options.")
+        print("1 - Do you eat breafast?")
+        print("2 - How many days per week do you eat breakfast?")
+        print("3 - Where do you eat breakfast?")
+        print("4 - At what time do you eat breakfast?")
+        print("5 - What do you drink with breakfast?")
+        print("6 - What do you eat for breakfast?\n")
+
+        choice = input("Type your choice here then press enter:\n")
+
+        if choice == '1':
+            print('Q1')
+
+        elif choice == '2':
+            print('Q2')
+
+        elif choice == '3':
+            print('Q3')
+
+        elif choice == '2':
+            print('Q4')
+
+        elif choice == '6':
+            print('Q5')
+
+        elif choice == '6':
+            print('Q6')
+
+        else:
+            print("Invalid choice. Please try again.\n")
+
+    return choice
+
+
 def get_total_males():
     """
     This function calculates the total numbers of males
