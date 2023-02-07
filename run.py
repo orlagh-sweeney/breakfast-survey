@@ -26,7 +26,7 @@ df.head()
 # print(df)
 
 
-def route_selection():
+def route_selection(df):
     """
     This function allows the user to select if they want
     to view results or take the survey
@@ -38,7 +38,7 @@ def route_selection():
         route_choice = input("Type your choice here then press enter:\n")
 
         if route_choice == '1':
-            results_selection()
+            results_selection(df)
             break
         if route_choice == '2':
             print('Take survey')
@@ -47,7 +47,7 @@ def route_selection():
         print('Invalid choice. Please try again.\n')
 
 
-def results_selection():
+def results_selection(df):
     """
     This function allows the user to select in which form they
     would like to view the results
@@ -61,10 +61,10 @@ def results_selection():
         analysis_type = input("Type your choice here then press enter:\n")
 
         if analysis_type == '1':
-            question_selection()
+            question_selection(df, groupby_col='gender')
             break
         if analysis_type == '2':
-            print('View age group survey')
+            question_selection(df, groupby_col='age group')
             break
         if analysis_type == '3':
             print('View summary')
@@ -73,7 +73,7 @@ def results_selection():
         print('Invalid choice. Please try again.\n')
 
 
-def question_selection():
+def question_selection(df_raw, groupby_col):
     """
     This function allows the user to selected which question
     they would like to set the results for
@@ -90,21 +90,22 @@ def question_selection():
         choice = input("Type your choice here then press enter:\n")
 
         if choice == '1':
+            display_percentages(df_raw, groupby_col, '1')
 
         elif choice == '2':
-            print('Q2')
+            display_percentages(df_raw, groupby_col, '2')
 
         elif choice == '3':
-            print('Q3')
+            display_percentages(df_raw, groupby_col, '3')
 
-        elif choice == '2':
-            print('Q4')
+        elif choice == '4':
+            display_percentages(df_raw, groupby_col, '4')
+
+        elif choice == '5':
+            display_percentages(df_raw, groupby_col, '5')
 
         elif choice == '6':
-            print('Q5')
-
-        elif choice == '6':
-            print('Q6')
+            display_percentages(df_raw, groupby_col, '6')
 
         else:
             print("Invalid choice. Please try again.\n")
@@ -136,7 +137,8 @@ def display_percentages(df_raw, groupby_col, question_num):
         values='percentage'
     )
 
-    wide_table.drop(columns="", inplace=True)
+    if "" in wide_table.columns:
+        wide_table.drop(columns="", inplace=True)
     wide_table.fillna('0%', inplace=True)
     print(tabulate(wide_table, headers='keys', tablefmt='psql'))
 
@@ -322,15 +324,12 @@ def calculate_q3_gender_results(male_total, female_total):
 #     )
 
 
-def main():
+def main(df):
     """
     Run all program functions
     """
     # welcome()
-    route_selection()
-    calculate_q1_gender_results(male_total, female_total, female_yes, male_yes)
-    calculate_q2_gender_results(male_total, female_total)
-    calculate_q3_gender_results(male_total, female_total)
+    route_selection(df)
 
 
-main()
+main(df=df)
