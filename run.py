@@ -1,10 +1,10 @@
+import os
 import gspread
 from google.oauth2.service_account import Credentials
 from prettytable import PrettyTable
 import pandas as pd
 import numpy as np
 from tabulate import tabulate
-import os
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -44,6 +44,7 @@ def route_selection(df):
 
         route_choice = input("Type your choice here then press enter:\n")
 
+        # selection statement to validate user input choice
         if route_choice == '1':
             results_selection(df)
             break
@@ -67,6 +68,7 @@ def results_selection(df):
 
         analysis_type = input("Type your choice here then press enter:\n")
 
+        # selection statement to validate user input choice
         if analysis_type == '1':
             question_selection(df, groupby_col='gender')
             break
@@ -99,6 +101,7 @@ def question_selection(df_raw, groupby_col):
 
         choice = input("Type your choice here then press enter:\n")
 
+        # selection statement to validate user input choice
         if choice == '1':
             display_percentages(df_raw, groupby_col, '1')
 
@@ -164,47 +167,47 @@ def display_percentages(df_raw, groupby_col, question_num):
     print(tabulate(wide_table, headers='keys', tablefmt='psql'))
 
 
-# def welcome():
-#     """
-#     Displays a welcome message and introduction to the survey
-#     """
-#     print(
-#         """\
-#                              #        #                   #
-#  ####                        #       ###                  #
-#  #   #                       #  #    #                   ###
-#  ####   # #     ##     ###   # #    ###     ###   ####    #
-#  #   #  ## #   # ##   #  #   ###     #     #  #   ##      # #
-#  #   #  #      ##     #  #   #  #    #     #  #     ##    # #
-#  ####   #       ###    ####  #  #    #      ####  ####     #
+def welcome():
+    """
+    Displays a welcome message and introduction to the survey
+    """
+    print(
+        """\
+                             #        #                   #
+ ####                        #       ###                  #
+ #   #                       #  #    #                   ###
+ ####   # #     ##     ###   # #    ###     ###   ####    #
+ #   #  ## #   # ##   #  #   ###     #     #  #   ##      # #
+ #   #  #      ##     #  #   #  #    #     #  #     ##    # #
+ ####   #       ###    ####  #  #    #      ####  ####     #
 
 
-#          ##
-#         #  #
-#          #     #  #   # #    #  #    ##    #  #
-#           #    #  #   ## #   #  #   # ##   #  #
-#         #  #   #  #   #       ##    ##     ## #
-#          ##     ###   #       ##     ###     ##
-#                                            #  #
-#                                             ##
-#     """
-#     )
+         ##
+        #  #
+         #     #  #   # #    #  #    ##    #  #
+          #    #  #   ## #   #  #   # ##   #  #
+        #  #   #  #   #       ##    ##     ## #
+         ##     ###   #       ##     ###     ##
+                                           #  #
+                                            ##
+    """
+    )
 
-#     print(
-#         """
-#         Welcome to the Breakfast Survey.\n
-#         This survey analyses breakfast eating habits based on gender and age.\n
-#         You can view the results, read a summary or add to the data by
-#         completing the survey.
-#         """
-#     )
+    print(
+        """
+Welcome to the Breakfast Survey.\n
+This survey analyses breakfast eating habits based on gender and age.\n
+You can view the results, read a summary or add to the data by
+completing the survey.
+        """
+    )
 
 
 def main(df):
     """
     Run all program functions
     """
-    # welcome()
+    welcome()
     route_selection(df)
 
 
