@@ -89,18 +89,7 @@ def question_selection():
 
         choice = input("Type your choice here then press enter:\n")
 
-        male_total = get_total_males()
-        male_yes = get_yes_males()
-        female_total = get_total_females()
-        female_yes = get_yes_females()
-
         if choice == '1':
-            calculate_q1_gender_results(
-                male_total=male_total,
-                male_yes=male_yes,
-                female_total=female_total,
-                female_yes=female_yes
-            )
 
         elif choice == '2':
             print('Q2')
@@ -123,10 +112,11 @@ def question_selection():
     return choice
 
 
-def display_percentages(df_raw, groupby_col, question_col):
+def display_percentages(df_raw, groupby_col, question_num):
     """
     This function calculates the total numbers of males
     """
+    question_col = f"question {question_num}"
     df_group = df_raw.groupby([groupby_col, question_col]).size().reset_index()
     df_group.rename(columns={0: 'counts'}, inplace=True)
     label_total_by_group = f'total_by_{groupby_col}'
@@ -150,7 +140,7 @@ def display_percentages(df_raw, groupby_col, question_col):
     wide_table.fillna('0%', inplace=True)
     print(tabulate(wide_table, headers='keys', tablefmt='psql'))
 
-display_percentages(df_raw=df, groupby_col='age group', question_col='question 6')
+display_percentages(df_raw=df, groupby_col='age group', question_num='6')
 
 def calculate_q1_gender_results(male_total, female_total, female_yes, male_yes):
     """
