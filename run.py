@@ -4,6 +4,7 @@ from prettytable import PrettyTable
 import pandas as pd
 import numpy as np
 from tabulate import tabulate
+import os
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -22,6 +23,14 @@ headers = data.pop(0)
 df = pd.DataFrame(data, columns=headers)
 df.head()
 # print(df)
+
+
+def clear_terminal():
+    """
+    This function clears the terminal
+    Code taken from Stackoverflow solution: https://stackoverflow.com/questions/2084508/clear-terminal-in-python
+    """
+    os.system('cls' if os.name == 'nt' else 'clear')
 
 
 def route_selection(df):
@@ -112,6 +121,7 @@ def question_selection(df_raw, groupby_col):
             display_percentages(df_raw, groupby_col, '6')
 
         elif choice == 'exit':
+            clear_terminal()
             route_selection(df)
 
         else:
