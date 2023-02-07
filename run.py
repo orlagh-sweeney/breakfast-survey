@@ -117,6 +117,10 @@ def display_percentages(df_raw, groupby_col, question_num):
     """
     This function calculates the total numbers of males
     """
+    if question_num not in ['1', '1.1']:
+        df_raw = df_raw[df_raw['question 1'] == 'Yes']
+    elif question_num == '1.1':
+        df_raw = df_raw[df_raw['question 1'] == 'No']
     question_col = f"question {question_num}"
     df_group = df_raw.groupby([groupby_col, question_col]).size().reset_index()
     df_group.rename(columns={0: 'counts'}, inplace=True)
@@ -142,7 +146,6 @@ def display_percentages(df_raw, groupby_col, question_num):
     wide_table.fillna('0%', inplace=True)
     print(tabulate(wide_table, headers='keys', tablefmt='psql'))
 
-display_percentages(df_raw=df, groupby_col='age group', question_num='6')
 
 def calculate_q1_gender_results(male_total, female_total, female_yes, male_yes):
     """
