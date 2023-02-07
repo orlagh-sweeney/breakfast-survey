@@ -123,7 +123,7 @@ def question_selection():
     return choice
 
 
-def get_percentages(df_raw, groupby_col, question_col):
+def display_percentages(df_raw, groupby_col, question_col):
     """
     This function calculates the total numbers of males
     """
@@ -138,21 +138,16 @@ def get_percentages(df_raw, groupby_col, question_col):
     df_group['percentage'] = df_group['percentage'].apply(
         lambda x: f'{int(x)}%'
     )
-    
-    return df_group
 
-
-def print_results_as_table(df_raw, groupby_col, question_col):
-    percentages = get_percentages(df_raw, groupby_col, question_col)
-    percentages = pd.pivot(
-        percentages,
+    wide_table = pd.pivot(
+        df_group,
         index=groupby_col,
         columns=question_col,
         values='percentage'
     )
-    print(tabulate(percentages, headers='keys', tablefmt='psql'))
+    print(tabulate(wide_table, headers='keys', tablefmt='psql'))
 
-print_results_as_table(df_raw=df, groupby_col='gender', question_col='question 1')
+display_percentages(df_raw=df, groupby_col='age group', question_col='question 3')
 
 def calculate_q1_gender_results(male_total, female_total, female_yes, male_yes):
     """
