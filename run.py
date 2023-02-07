@@ -145,9 +145,12 @@ def display_percentages(df_raw, groupby_col, question_col):
         columns=question_col,
         values='percentage'
     )
+
+    wide_table.drop(columns="", inplace=True)
+    wide_table.fillna('0%', inplace=True)
     print(tabulate(wide_table, headers='keys', tablefmt='psql'))
 
-display_percentages(df_raw=df, groupby_col='age group', question_col='question 3')
+display_percentages(df_raw=df, groupby_col='age group', question_col='question 6')
 
 def calculate_q1_gender_results(male_total, female_total, female_yes, male_yes):
     """
