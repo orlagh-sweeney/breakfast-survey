@@ -77,7 +77,7 @@ def question_selection(df_raw, groupby_col):
     they would like to set the results for
     """
     while True:
-        print("Please select a question from the following options.")
+        print("Select a question from the following options:\n")
         print("1 - Do you eat breafast?")
         print("1.1 - Why do you not eat breakfast?")
         print("2 - How many days per week do you eat breakfast?")
@@ -85,6 +85,8 @@ def question_selection(df_raw, groupby_col):
         print("4 - At what time do you eat breakfast?")
         print("5 - What do you drink with breakfast?")
         print("6 - What do you eat for breakfast?\n")
+
+        print("To return to the beginning, type 'exit'\n")
 
         choice = input("Type your choice here then press enter:\n")
 
@@ -108,6 +110,9 @@ def question_selection(df_raw, groupby_col):
 
         elif choice == '6':
             display_percentages(df_raw, groupby_col, '6')
+
+        elif choice == 'exit':
+            route_selection(df)
 
         else:
             print("Invalid choice. Please try again.\n")
