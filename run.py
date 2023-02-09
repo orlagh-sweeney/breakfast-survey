@@ -173,7 +173,7 @@ def display_survey():
     """
     questions = [
         'Please select your age aroup',
-        'Please select your gender'
+        'Please select your gender',
         'Do you eat breakfast',
         'If not, why do you not eat breakfast?',
         'How many days per week do you eat breakfast?',
@@ -185,8 +185,8 @@ def display_survey():
 
     options = [
         ['18-24', '25-34', '35-44', '45-54', '55-64', '65+'],
-        ['Male', 'Female',],
-        ['Yes', 'No',],
+        ['Male', 'Female'],
+        ['Yes', 'No'],
         ['Not hungry', 'No time', 'Other'],
         ['1', '2', '3', '4', '5', '6', '7'],
         ['Home', 'Work', 'On the way to work'],
@@ -195,6 +195,19 @@ def display_survey():
         ['Cereal', 'Porridge', 'Yoghurt with granola/fruit', 'Toast', 'Eggs', 'Protein shake/meal replacement', 'Other']
     ]
 
+    user_answers = []
+
+    for question, option in zip(questions, options):
+        print(question, *option, sep='\n')
+        answer = input('Type you answer choice here:\n')
+        index = int(answer)
+        logged_answer = option[index-1]
+        print(logged_answer)
+        user_answers.append(logged_answer)
+        print(user_answers)
+        
+
+display_survey()
 
 def welcome():
     """
@@ -232,12 +245,12 @@ completing the survey.
     )
 
 
-def main(df):
-    """
-    Run all program functions
-    """
-    welcome()
-    route_selection(df)
+# def main(df):
+#     """
+#     Run all program functions
+#     """
+#     welcome()
+#     route_selection(df)
 
 
-main(df=df)
+# main(df=df)
