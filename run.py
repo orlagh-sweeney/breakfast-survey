@@ -167,6 +167,35 @@ def display_percentages(df_raw, groupby_col, question_num):
     print(tabulate(wide_table, headers='keys', tablefmt='psql'))
 
 
+def display_survey():
+    """
+    Displays the survey 
+    """
+    questions = [
+        'Please select your age aroup',
+        'Please select your gender'
+        'Do you eat breakfast',
+        'If not, why do you not eat breakfast?',
+        'How many days per week do you eat breakfast?',
+        'Where do you eat breakfast?',
+        'At what time do you eat breakfast?',
+        'What do you drink with breakfast?',
+        'What do you eat for breakfast?'
+    ]
+
+    options = [
+        ['18-24', '25-34', '35-44', '45-54', '55-64', '65+'],
+        ['Male', 'Female',],
+        ['Yes', 'No',],
+        ['Not hungry', 'No time', 'Other'],
+        ['1', '2', '3', '4', '5', '6', '7'],
+        ['Home', 'Work', 'On the way to work'],
+        ['6am-7am', '7am-8am', '8am-9am', '9am-10am', '10am-11am'],
+        ['Coffee', 'Tea', 'Juice'],
+        ['Cereal', 'Porridge', 'Yoghurt with granola/fruit', 'Toast', 'Eggs', 'Protein shake/meal replacement', 'Other']
+    ]
+
+
 def welcome():
     """
     Displays a welcome message and introduction to the survey
