@@ -166,6 +166,15 @@ def display_percentages(df_raw, groupby_col, question_num):
     print(tabulate(wide_table, headers='keys', tablefmt='psql'))
 
 
+def update_worksheet(user_answers):
+    """
+    Update the google sheet with user answers by
+    adding a new row the the sheet
+    """
+    worksheet = SHEET.worksheet("bkdata")
+    worksheet.append_row(user_answers)
+
+
 def display_survey():
     """
     This function iterates through a dictionary and pushes questions
@@ -241,6 +250,8 @@ def display_survey():
             user_answers = question_and_log_results(
                 question, options, user_answers
                 )
+
+    update_worksheet(user_answers)
 
 
 def question_and_log_results(question, options, user_answers):
