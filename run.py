@@ -171,43 +171,63 @@ def display_survey():
     """
     Displays the survey 
     """
-    questions = [
-        'Please select your age aroup',
-        'Please select your gender',
-        'Do you eat breakfast',
-        'If not, why do you not eat breakfast?',
-        'How many days per week do you eat breakfast?',
-        'Where do you eat breakfast?',
-        'At what time do you eat breakfast?',
-        'What do you drink with breakfast?',
-        'What do you eat for breakfast?'
-    ]
-
-    options = [
-        ['18-24', '25-34', '35-44', '45-54', '55-64', '65+'],
-        ['Male', 'Female'],
-        ['Yes', 'No'],
-        ['Not hungry', 'No time', 'Other'],
-        ['1', '2', '3', '4', '5', '6', '7'],
-        ['Home', 'Work', 'On the way to work'],
-        ['6am-7am', '7am-8am', '8am-9am', '9am-10am', '10am-11am'],
-        ['Coffee', 'Tea', 'Juice'],
-        ['Cereal', 'Porridge', 'Yoghurt with granola/fruit', 'Toast', 'Eggs', 'Protein shake/meal replacement', 'Other']
-    ]
+    q_and_o = {
+        1: {
+            'question': 'Please select your age aroup',
+            'options': ['18-24', '25-34', '35-44', '45-54', '55-64', '65+']
+        },
+        2: {
+            'question': 'Please select your gender',
+            'options': ['Male', 'Female']
+        },
+        3: {
+            'question': 'Do you eat breakfast',
+            'options': ['Yes', 'No']
+        },
+        4: {
+            'question': 'If not, why do you not eat breakfast?',
+            'options': ['Not hungry', 'No time', 'Other']
+        },
+        5: {
+            'question': 'How many days per week do you eat breakfast?',
+            'options': ['1', '2', '3', '4', '5', '6', '7']
+        },
+        6: {
+            'question': 'Where do you eat breakfast?',
+            'options': ['Home', 'Work', 'On the way to work']
+        },
+        7: {
+            'question': 'At what time do you eat breakfast?',
+            'options': ['6am-7am', '7am-8am', '8am-9am', '9am-10am', '10am-11am']
+        },
+        8: {
+            'question': 'What do you drink with breakfast?',
+            'options': ['Coffee', 'Tea', 'Juice']
+        },
+        9: {
+            'question': 'What do you eat for breakfast?',
+            'options': ['Cereal', 'Porridge', 'Yoghurt with granola/fruit', 'Toast', 'Eggs', 'Protein shake/meal replacement', 'Other']
+        },
+    }
 
     user_answers = []
+    eats_breakfast = True
+    count = 0
 
     for question, option in zip(questions, options):
-        print(question, *option, sep='\n')
-        answer = input('Type you answer choice here:\n')
-        index = int(answer)
-        logged_answer = option[index-1]
-        print(logged_answer)
-        user_answers.append(logged_answer)
-        print(user_answers)
-        
+        if 
+
+def question_and_log_results(questions, options):
+    print(question, *option, sep='\n')
+    answer = input('Type you answer choice here:\n')
+    index = int(answer)
+    logged_answer = option[index-1]
+    print(logged_answer)
+    user_answers.append(logged_answer)
+    print(user_answers)
 
 display_survey()
+
 
 def welcome():
     """
