@@ -21,7 +21,7 @@ data = SHEET.worksheet('bkdata').get_all_values()
 headers = data.pop(0)
 df = pd.DataFrame(data, columns=headers)
 df.head()
-# print(df)
+print(df)
 
 
 def clear_terminal():
@@ -168,9 +168,14 @@ def display_percentages(df_raw, groupby_col, question_num):
 
 def update_worksheet(user_answers):
     """
+    Add user ID to the start of the user answers list.
     Update the google sheet with user answers by
-    adding a new row the the sheet
+    adding a new row the the sheet.
     """
+    index = df.index.tolist().pop()
+    user_id = index + 2
+    user_answers.insert(0, user_id)
+
     worksheet = SHEET.worksheet("bkdata")
     worksheet.append_row(user_answers)
 
