@@ -1,7 +1,6 @@
 import os
 import gspread
 from google.oauth2.service_account import Credentials
-from prettytable import PrettyTable
 import pandas as pd
 import numpy as np
 from tabulate import tabulate
@@ -28,7 +27,7 @@ df.head()
 def clear_terminal():
     """
     This function clears the terminal
-    Code taken from Stackoverflow solution: https://stackoverflow.com/questions/2084508/clear-terminal-in-python
+    Code taken from Stackoverflow solution by user 'Poke'
     """
     os.system('cls' if os.name == 'nt' else 'clear')
 
@@ -169,11 +168,11 @@ def display_percentages(df_raw, groupby_col, question_num):
 
 def display_survey():
     """
-    This function iterates through a dictionary and pushes questions 
-    and answer options to the user based on their previous answers. 
+    This function iterates through a dictionary and pushes questions
+    and answer options to the user based on their previous answers.
     If the user answers 'Yes' to question 3, question 4 is skipped
     If the user answers 'No' to question 3, they answer question 5
-    then the survey ends. 
+    then the survey ends.
     """
     q_and_o = {
         1: {
@@ -202,7 +201,8 @@ def display_survey():
         },
         7: {
             'question': 'At what time do you eat breakfast?',
-            'options': ['6am-7am', '7am-8am', '8am-9am', '9am-10am', '10am-11am']
+            'options': ['6am-7am', '7am-8am', '8am-9am', '9am-10am',
+                        '10am-11am']
         },
         8: {
             'question': 'What do you drink with breakfast?',
@@ -210,7 +210,9 @@ def display_survey():
         },
         9: {
             'question': 'What do you eat for breakfast?',
-            'options': ['Cereal', 'Porridge', 'Yoghurt with granola/fruit', 'Toast', 'Eggs', 'Protein shake/meal replacement', 'Other']
+            'options': ['Cereal', 'Porridge', 'Yoghurt with granola/fruit',
+                        'Toast', 'Eggs', 'Protein shake/meal replacement',
+                        'Other']
         },
     }
 
@@ -221,18 +223,24 @@ def display_survey():
         options = question_dict['options']
 
         if question_num <= 3:
-            user_answers = question_and_log_results(question, options, user_answers)
+            user_answers = question_and_log_results(
+                question, options, user_answers
+                )
 
         if question_num == 4:
             if user_answers[-1] == 'Yes':
                 user_answers.append('')
                 continue
             else:
-                user_answers = question_and_log_results(question, options, user_answers)
+                user_answers = question_and_log_results(
+                    question, options, user_answers
+                    )
                 break
 
         if question_num >= 5:
-            user_answers = question_and_log_results(question, options, user_answers)
+            user_answers = question_and_log_results(
+                question, options, user_answers
+                )
 
 
 def question_and_log_results(question, options, user_answers):
@@ -247,7 +255,7 @@ def question_and_log_results(question, options, user_answers):
     print(logged_answer)
     user_answers.append(logged_answer)
     print(user_answers)
-    
+
     return user_answers
 
 display_survey()
