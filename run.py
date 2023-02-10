@@ -169,7 +169,11 @@ def display_percentages(df_raw, groupby_col, question_num):
 
 def display_survey():
     """
-    Displays the survey 
+    This function iterates through a dictionary and pushes questions 
+    and answer options to the user based on their previous answers. 
+    If the user answers 'Yes' to question 3, question 4 is skipped
+    If the user answers 'No' to question 3, they answer question 5
+    then the survey ends. 
     """
     q_and_o = {
         1: {
@@ -211,20 +215,40 @@ def display_survey():
     }
 
     user_answers = []
-    eats_breakfast = True
-    count = 0
 
-    for question, option in zip(questions, options):
-        if 
+    for question_num, question_dict in q_and_o.items():
+        question = question_dict['question']
+        options = question_dict['options']
 
-def question_and_log_results(questions, options):
-    print(question, *option, sep='\n')
+        if question_num <= 3:
+            user_answers = question_and_log_results(question, options, user_answers)
+
+        if question_num == 4:
+            if user_answers[-1] == 'Yes':
+                user_answers.append('')
+                continue
+            else:
+                user_answers = question_and_log_results(question, options, user_answers)
+                break
+
+        if question_num >= 5:
+            user_answers = question_and_log_results(question, options, user_answers)
+
+
+def question_and_log_results(question, options, user_answers):
+    """
+    This function displays the questions and options to the user
+    and logs the answers from the user
+    """
+    print(question, *options, sep='\n')
     answer = input('Type you answer choice here:\n')
     index = int(answer)
-    logged_answer = option[index-1]
+    logged_answer = options[index-1]
     print(logged_answer)
     user_answers.append(logged_answer)
     print(user_answers)
+    
+    return user_answers
 
 display_survey()
 
