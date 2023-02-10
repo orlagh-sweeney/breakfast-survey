@@ -4,6 +4,7 @@ from google.oauth2.service_account import Credentials
 import pandas as pd
 import numpy as np
 from tabulate import tabulate
+from colorama import Fore, Back, Style
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
