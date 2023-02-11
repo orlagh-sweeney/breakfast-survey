@@ -4,7 +4,7 @@ from google.oauth2.service_account import Credentials
 import pandas as pd
 import numpy as np
 from tabulate import tabulate
-from colorama import Fore, Back, Style
+from colorama import Fore, Style
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -22,7 +22,14 @@ data = SHEET.worksheet('bkdata').get_all_values()
 headers = data.pop(0)
 df = pd.DataFrame(data, columns=headers)
 df.head()
-print(df)
+# print(df)
+
+red = Fore.RED  # colour for error messages
+yellow = Fore.YELLOW  # colour for instructions
+green = Fore.GREEN  # colour for inputs
+cyan = Fore.CYAN  # colour for tables
+bright = Style.BRIGHT
+reset = Style.RESET_ALL  # resets the colours
 
 
 def clear_terminal():
@@ -39,20 +46,22 @@ def route_selection(df):
     to view results or take the survey
     """
     while True:
-        print("To view the survey results type '1' below.")
-        print("To take the survey type '2' below.")
+        print(yellow + "To view the survey results type '1' below." + reset)
+        print(yellow + "To take the survey type '2' below.\n" + reset)
 
-        route_choice = input("Type your choice here then press enter:\n")
+        route_choice = input(green + "Type your choice here then press enter:\n" + reset)
 
         # selection statement to validate user input choice
         if route_choice == '1':
+            clear_terminal()
             results_selection(df)
             break
         if route_choice == '2':
-            print('Take survey')
+            clear_terminal()
+            display_survey()
             break
 
-        print('Invalid choice. Please try again.\n')
+        print(red + 'Invalid choice. Please try again.\n' + reset)
 
 
 def results_selection(df):
@@ -61,25 +70,27 @@ def results_selection(df):
     would like to view the results
     """
     while True:
-        print("Please select from the following options.")
-        print("1 - View results by gender")
-        print("2 - View results by age group")
-        print("3 - View survey summary")
+        print(yellow + "\nPlease select from the following options:\n" + reset)
+        print("1 - View results by Gender")
+        print("2 - View results by Age Group")
+        print("3 - View survey summary\n")
 
-        analysis_type = input("Type your choice here then press enter:\n")
+        analysis_type = input(green + "Type your choice here then press enter:\n" + reset)
 
         # selection statement to validate user input choice
         if analysis_type == '1':
+            clear_terminal()
             question_selection(df, groupby_col='gender')
             break
         if analysis_type == '2':
+            clear_terminal()
             question_selection(df, groupby_col='age group')
             break
         if analysis_type == '3':
             print('View summary')
             break
 
-        print('Invalid choice. Please try again.\n')
+        print(red + 'Invalid choice. Please try again.\n' + reset)
 
 
 def question_selection(df_raw, groupby_col):
@@ -88,7 +99,7 @@ def question_selection(df_raw, groupby_col):
     they would like to set the results for
     """
     while True:
-        print("Select a question from the following options:\n")
+        print(yellow + "\nSelect a question from the following options:\n" + reset)
         print("1 - Do you eat breafast?")
         print("1.1 - Why do you not eat breakfast?")
         print("2 - How many days per week do you eat breakfast?")
@@ -99,7 +110,7 @@ def question_selection(df_raw, groupby_col):
 
         print("To return to the beginning, type 'exit'\n")
 
-        choice = input("Type your choice here then press enter:\n")
+        choice = input(green + "Type your choice here then press enter:\n" + reset)
 
         # selection statement to validate user input choice
         if choice == '1':
@@ -128,7 +139,7 @@ def question_selection(df_raw, groupby_col):
             route_selection(df)
 
         else:
-            print("Invalid choice. Please try again.\n")
+            print(red + "Invalid choice. Please try again.\n" + reset)
 
     return choice
 
@@ -164,7 +175,7 @@ def display_percentages(df_raw, groupby_col, question_num):
     if "" in wide_table.columns:
         wide_table.drop(columns="", inplace=True)
     wide_table.fillna('0%', inplace=True)
-    print(tabulate(wide_table, headers='keys', tablefmt='psql'))
+    print(cyan + bright + tabulate(wide_table, headers='keys', tablefmt='psql') + reset)
 
 
 def update_worksheet(user_answers):
@@ -193,9 +204,9 @@ def end_survey(questions_answered, user_answers):
         if user_answer == '':
             continue
 
-    print('\nTo submit your answers, type 1 below.')
-    print('To re-take the survey, type 2 below.\n')
-    choice = input("Type your choice here then press enter:\n")
+    print(yellow + '\nTo submit your answers, type 1 below.')
+    print('To re-take the survey, type 2 below.\n' + reset)
+    choice = input(green + "Type your choice here then press enter:\n" + reset)
 
     if choice == '1':
         update_worksheet(user_answers)
@@ -216,11 +227,11 @@ def display_survey():
     """
     q_and_o = {
         1: {
-            'question': 'Please select your age aroup',
+            'question': 'Select your age aroup',
             'options': ['18-24', '25-34', '35-44', '45-54', '55-64', '65+']
         },
         2: {
-            'question': 'Please select your gender',
+            'question': 'Select your gender',
             'options': ['Male', 'Female']
         },
         3: {
@@ -292,16 +303,14 @@ def question_and_log_results(question, options, user_answers, questions_answered
     and logs the answers from the user
     """
     valid = []
-    print(f'{question}\n')
+    print(yellow + f'\n{question}\n' + reset)
     for (i, option) in enumerate(options, start=1):
         valid.append(i)
         print(f"{i}: {option}")
-    answer = input('\nType your answer choice here:\n')
+    answer = input(green + '\nType your answer choice here:\n' + reset)
     while int(answer) not in valid:
-        print(f'Invalid choice, you must enter a number from: {valid}')
-        answer = input(
-            'Type your answer choice here:\n'
-            )
+        print(red + f'Invalid choice, you must enter a number from: {valid}' + reset)
+        answer = input(green + 'Type your answer choice here:\n' + reset)
     index = int(answer)
     logged_answer = options[index-1]
     print(logged_answer)
@@ -311,14 +320,12 @@ def question_and_log_results(question, options, user_answers, questions_answered
 
     return user_answers
 
-display_survey()
-
 
 def welcome():
     """
     Displays a welcome message and introduction to the survey
     """
-    print(
+    print(Fore.YELLOW +
         """\
                              #        #                   #
  ####                        #       ###                  #
@@ -338,7 +345,7 @@ def welcome():
                                            #  #
                                             ##
     """
-    )
+    + Style.RESET_ALL)
 
     print(
         """
@@ -350,12 +357,12 @@ completing the survey.
     )
 
 
-# def main(df):
-#     """
-#     Run all program functions
-#     """
-#     welcome()
-#     route_selection(df)
+def main(df):
+    """
+    Run all program functions
+    """
+    welcome()
+    route_selection(df)
 
 
-# main(df=df)
+main(df=df)
