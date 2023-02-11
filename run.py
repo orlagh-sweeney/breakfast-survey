@@ -202,7 +202,7 @@ def update_worksheet(user_answers):
     worksheet.append_row(user_answers)
 
 
-def end_survey(questions_answered, user_answers):
+def submit_survey(questions_answered, user_answers):
     """
     Displays the users answers and allows the user to submit
     their results or take the survey again
@@ -214,15 +214,19 @@ def end_survey(questions_answered, user_answers):
         if user_answer == '':
             continue
 
-    print(yellow + '\nTo submit your answers, type 1 below.')
-    print('To re-take the survey, type 2 below.\n' + reset)
-    choice = input(green + "Type your choice here then press enter:\n" + reset)
+    while True:
+        print(yellow + '\nTo submit your answers, type 1 below.')
+        print('To re-take the survey, type 2 below.\n' + reset)
+        choice = input(green + "Type your choice here then press enter:\n" + reset)
 
-    if choice == '1':
-        update_worksheet(user_answers)
-    elif choice == '2':
-        clear_terminal()
-        display_survey()
+        if choice == '1':
+            update_worksheet(user_answers)
+
+        elif choice == '2':
+            clear_terminal()
+            display_survey()
+
+        print(red + "Invalid choice. Please try again.\n" + reset)
 
     return choice
 
@@ -307,7 +311,7 @@ def display_survey():
                 question, options, user_answers, questions_answered
                 )
 
-    end_survey(questions_answered, user_answers)
+    submit_survey(questions_answered, user_answers)
 
 
 def question_and_log_results(question, options, user_answers, questions_answered):
