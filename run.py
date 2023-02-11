@@ -202,6 +202,37 @@ def update_worksheet(user_answers):
     worksheet.append_row(user_answers)
 
 
+def end_program():
+    """
+    This displays a goodbye message and the
+    option to restart the program
+    """
+    print(yellow +
+        """\
+ ## ##    ## ##    ## ##   ### ##   ### ##   ##  ##   ### ###
+##   ##  ##   ##  ##   ##   ##  ##   ##  ##  ##  ##    ##  ##
+##       ##   ##  ##   ##   ##  ##   ##  ##  ##  ##    ##
+##  ###  ##   ##  ##   ##   ##  ##   ## ##    ## ##    ## ##
+##   ##  ##   ##  ##   ##   ##  ##   ##  ##    ##      ##
+##   ##  ##   ##  ##   ##   ##  ##   ##  ##    ##      ##  ##
+ ## ##    ## ##    ## ##   ### ##   ### ##     ##     ### ### 
+    """ + reset)
+
+    while True:
+        print('Not ready to leave yet?')
+        print('Type 1 below restart the program.\n')
+
+        choice = input(green + "Type your choice here then press enter:\n" + reset)
+
+        if choice == '1':
+            clear_terminal()
+            main(df)
+
+        print(red + "Invalid choice. Please try again.\n" + reset)
+
+    return choice
+
+
 def end_survey():
     """
     This displays a thank you message to the user and 
@@ -222,7 +253,7 @@ def end_survey():
 
         elif choice == '2':
             clear_terminal()
-            print(yellow + 'Goodbye!/n' + reset)
+            end_program()
             break
 
         print(red + "Invalid choice. Please try again.\n" + reset)
@@ -377,7 +408,7 @@ def welcome():
     """
     Displays a welcome message and introduction to the survey
     """
-    print(Fore.YELLOW +
+    print(yellow +
         """\
                              #        #                   #
  ####                        #       ###                  #
@@ -397,7 +428,7 @@ def welcome():
                                            #  #
                                             ##
     """
-    + Style.RESET_ALL)
+    + reset)
 
     print(
         """
