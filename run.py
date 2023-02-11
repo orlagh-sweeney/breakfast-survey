@@ -265,10 +265,17 @@ def question_and_log_results(question, options, user_answers):
     This function displays the questions and options to the user
     and logs the answers from the user
     """
+    valid = []
     print(f'{question}\n')
     for (i, option) in enumerate(options, start=1):
+        valid.append(i)
         print(f"{i}: {option}\n")
-    answer = input('Type you answer choice here:\n')
+    answer = input('Type your answer choice here:\n')
+    while int(answer) not in valid:
+        print(f'Invalid choice, you must enter a number from: {valid}')
+        answer = input(
+            'Type your answer choice here:\n'
+            )
     index = int(answer)
     logged_answer = options[index-1]
     print(logged_answer)
