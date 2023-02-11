@@ -202,6 +202,34 @@ def update_worksheet(user_answers):
     worksheet.append_row(user_answers)
 
 
+def end_survey():
+    """
+    This displays a thank you message to the user and 
+    an option to view the survey results
+    """
+    while True:
+        print('Your answers have been successfully submitted.')
+        print('Thank you for taking the time to complete the survey.\n')
+        print('Would you like to view the survey results?')
+        print(yellow + 'To view the survey results, type 1.')
+        print('To end the program, type 2.\n' + reset)
+
+        choice = input(green + "Type your choice here then press enter:\n" + reset)
+
+        if choice == '1':
+            clear_terminal()
+            results_selection(df)
+
+        elif choice == '2':
+            clear_terminal()
+            print(yellow + 'Goodbye!/n' + reset)
+            break
+
+        print(red + "Invalid choice. Please try again.\n" + reset)
+
+    return choice
+
+
 def submit_survey(questions_answered, user_answers):
     """
     Displays the users answers and allows the user to submit
@@ -220,7 +248,9 @@ def submit_survey(questions_answered, user_answers):
         choice = input(green + "Type your choice here then press enter:\n" + reset)
 
         if choice == '1':
+            clear_terminal()
             update_worksheet(user_answers)
+            end_survey()
 
         elif choice == '2':
             clear_terminal()
