@@ -385,11 +385,12 @@ def question_and_log_results(question, options, user_answers, questions_answered
     print(yellow + f'\n{question}\n' + reset)
     # allocates a number to the answer options for the user to choose from
     for (i, option) in enumerate(options, start=1):
+        str(i)
         valid.append(i)
         print(f"{i}: {option}")
     answer = input(green + '\nType your answer choice here:\n' + reset)
     # validates user input against the enumerate values
-    while int(answer) not in valid:
+    while answer not in valid:
         print(red + f'Invalid choice, you must enter a number from: {valid}' + reset)
         answer = input(green + 'Type your answer choice here:\n' + reset)
     # uses the index of the answer option in the q_and_o dictionary to
