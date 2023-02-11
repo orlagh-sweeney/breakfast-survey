@@ -181,6 +181,31 @@ def update_worksheet(user_answers):
     worksheet.append_row(user_answers)
 
 
+def end_survey(questions_answered, user_answers):
+    """
+    Displays the users answers and allows the user to submit
+    their results or take the survey again
+    """
+    print('Thank you taking our survey. Please review your answers then submit or retake the survey:')
+
+    for question_answered, user_answer in zip(questions_answered, user_answers):
+        print(f"{question_answered}: {user_answer}")
+        if user_answer == '':
+            continue
+
+    print('\nTo submit your answers, type 1 below.')
+    print('To re-take the survey, type 2 below.\n')
+    choice = input("Type your choice here then press enter:\n")
+
+    if choice == '1':
+        update_worksheet(user_answers)
+    elif choice == '2':
+        clear_terminal()
+        display_survey()
+
+    return choice
+
+
 def display_survey():
     """
     This function iterates through a dictionary and pushes questions
@@ -232,6 +257,7 @@ def display_survey():
     }
 
     user_answers = []
+    questions_answered = []
 
     for question_num, question_dict in q_and_o.items():
         question = question_dict['question']
@@ -239,7 +265,7 @@ def display_survey():
 
         if question_num <= 3:
             user_answers = question_and_log_results(
-                question, options, user_answers
+                question, options, user_answers, questions_answered
                 )
 
         if question_num == 4:
@@ -248,19 +274,19 @@ def display_survey():
                 continue
             else:
                 user_answers = question_and_log_results(
-                    question, options, user_answers
+                    question, options, user_answers, questions_answered
                     )
                 break
 
         if question_num >= 5:
             user_answers = question_and_log_results(
-                question, options, user_answers
+                question, options, user_answers, questions_answered
                 )
 
-    update_worksheet(user_answers)
+    end_survey(questions_answered, user_answers)
 
 
-def question_and_log_results(question, options, user_answers):
+def question_and_log_results(question, options, user_answers, questions_answered):
     """
     This function displays the questions and options to the user
     and logs the answers from the user
@@ -269,8 +295,8 @@ def question_and_log_results(question, options, user_answers):
     print(f'{question}\n')
     for (i, option) in enumerate(options, start=1):
         valid.append(i)
-        print(f"{i}: {option}\n")
-    answer = input('Type your answer choice here:\n')
+        print(f"{i}: {option}")
+    answer = input('\nType your answer choice here:\n')
     while int(answer) not in valid:
         print(f'Invalid choice, you must enter a number from: {valid}')
         answer = input(
@@ -281,6 +307,7 @@ def question_and_log_results(question, options, user_answers):
     print(logged_answer)
     user_answers.append(logged_answer)
     print(user_answers)
+    questions_answered.append(question)
 
     return user_answers
 
