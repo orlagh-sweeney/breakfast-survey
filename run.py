@@ -266,7 +266,8 @@ def submit_survey(questions_answered, user_answers):
     Displays the users answers and allows the user to submit
     their results or take the survey again
     """
-    print('Thank you taking our survey. Please review your answers then submit or retake the survey:')
+    print('Thank you taking this survey.\n')
+    print('Please review your answers then submit or retake the survey:\n')
 
     for question_answered, user_answer in zip(questions_answered, user_answers):
         print(f"{question_answered}: {user_answer}")
@@ -372,6 +373,7 @@ def display_survey():
                 question, options, user_answers, questions_answered
                 )
 
+    clear_terminal()
     submit_survey(questions_answered, user_answers)
 
 
