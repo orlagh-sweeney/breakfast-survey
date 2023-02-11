@@ -144,7 +144,7 @@ def question_selection(df_raw, groupby_col):
             print(cyan + bright + "What do you eat for breakfast?" + reset)
             display_percentages(df_raw, groupby_col, '6')
 
-        elif choice == 'exit' or 'EXIT':
+        elif choice in ('exit', 'EXIT'):
             clear_terminal()
             route_selection(df)
 
@@ -385,7 +385,7 @@ def question_and_log_results(question, options, user_answers, questions_answered
     print(yellow + f'\n{question}\n' + reset)
     # allocates a number to the answer options for the user to choose from
     for (i, option) in enumerate(options, start=1):
-        str(i)
+        i = str(i)
         valid.append(i)
         print(f"{i}: {option}")
     answer = input(green + '\nType your answer choice here:\n' + reset)
@@ -404,6 +404,7 @@ def question_and_log_results(question, options, user_answers, questions_answered
 
     return user_answers
 
+display_survey()
 
 def welcome():
     """
@@ -440,12 +441,12 @@ You can view the results or add to the data by completing the survey.
     )
 
 
-def main(df):
-    """
-    Run all program functions
-    """
-    welcome()
-    route_selection(df)
+# def main(df):
+#     """
+#     Run all program functions
+#     """
+#     welcome()
+#     route_selection(df)
 
 
-main(df=df)
+# main(df=df)
