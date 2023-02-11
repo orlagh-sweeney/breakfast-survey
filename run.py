@@ -290,9 +290,12 @@ def display_survey():
                 )
 
         if question_num == 4:
+            # adds an empty string to user_answers to avoid an error
+            # when pushing the data to google sheets later
             if user_answers[-1] == 'Yes':
                 user_answers.append('')
                 continue
+            # ends the survey if question 4 was answered
             else:
                 user_answers = question_and_log_results(
                     question, options, user_answers, questions_answered
@@ -309,18 +312,23 @@ def display_survey():
 
 def question_and_log_results(question, options, user_answers, questions_answered):
     """
-    This function displays the questions and options to the user
-    and logs the answers from the user
+    This function displays the questions and answer options to the user
+    It validates users input and stores answers from the user
     """
+    # stores valid input options using the enumerate values
     valid = []
     print(yellow + f'\n{question}\n' + reset)
+    # allocates a number to the answer options for the user to choose from
     for (i, option) in enumerate(options, start=1):
         valid.append(i)
         print(f"{i}: {option}")
     answer = input(green + '\nType your answer choice here:\n' + reset)
+    # validates user input against the enumerate values
     while int(answer) not in valid:
         print(red + f'Invalid choice, you must enter a number from: {valid}' + reset)
         answer = input(green + 'Type your answer choice here:\n' + reset)
+    # uses the index of the answer option in the q_and_o dictionary to
+    # get the string value and append it to users_answers
     index = int(answer)
     logged_answer = options[index-1]
     print(logged_answer)
