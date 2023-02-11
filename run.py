@@ -46,8 +46,8 @@ def route_selection(df):
     to view results or take the survey
     """
     while True:
-        print(yellow + "To view the survey results type '1' below." + reset)
-        print(yellow + "To take the survey type '2' below.\n" + reset)
+        print(yellow + "To view the survey results, type '1' below." + reset)
+        print(yellow + "To take the survey, type '2' below.\n" + reset)
 
         route_choice = input(green + "Type your choice here then press enter:\n" + reset)
 
@@ -404,7 +404,6 @@ def question_and_log_results(question, options, user_answers, questions_answered
 
     return user_answers
 
-display_survey()
 
 def welcome():
     """
@@ -441,12 +440,12 @@ You can view the results or add to the data by completing the survey.
     )
 
 
-# def main(df):
-#     """
-#     Run all program functions
-#     """
-#     welcome()
-#     route_selection(df)
+def main(df):
+    """
+    Run all program functions
+    """
+    welcome()
+    route_selection(df)
 
 
-# main(df=df)
+main(df=df)
