@@ -72,8 +72,7 @@ def results_selection(df):
     while True:
         print(yellow + "\nPlease select from the following options:\n" + reset)
         print("1 - View results by Gender")
-        print("2 - View results by Age Group")
-        print("3 - View survey summary\n")
+        print("2 - View results by Age Group\n")
 
         analysis_type = input(green + "Type your choice here then press enter:\n" + reset)
 
@@ -85,9 +84,6 @@ def results_selection(df):
         if analysis_type == '2':
             clear_terminal()
             question_selection(df, groupby_col='age group')
-            break
-        if analysis_type == '3':
-            print('View summary')
             break
 
         print(red + 'Invalid choice. Please try again.\n' + reset)
@@ -148,7 +144,7 @@ def question_selection(df_raw, groupby_col):
             print(cyan + bright + "What do you eat for breakfast?" + reset)
             display_percentages(df_raw, groupby_col, '6')
 
-        elif choice == 'exit':
+        elif choice == 'exit' or 'EXIT':
             clear_terminal()
             route_selection(df)
 
@@ -365,8 +361,7 @@ def welcome():
         """
 Welcome to the Breakfast Survey.\n
 This survey analyses breakfast eating habits based on gender and age.\n
-You can view the results, read a summary or add to the data by
-completing the survey.
+You can view the results or add to the data by completing the survey.
         """
     )
 
