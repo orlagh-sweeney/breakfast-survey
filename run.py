@@ -114,30 +114,37 @@ def question_selection(df_raw, groupby_col):
 
         # selection statement to validate user input choice
         if choice == '1':
+            clear_terminal()
             print(cyan + bright + "Do you eat breafast?" + reset)
             display_percentages(df_raw, groupby_col, '1')
 
         elif choice == '1.1':
+            clear_terminal()
             print(cyan + bright + "Why do you not eat breakfast?" + reset)
             display_percentages(df_raw, groupby_col, '1.1')
 
         elif choice == '2':
+            clear_terminal()
             print(cyan + bright + "How many days per week do you eat breakfast?" + reset)
             display_percentages(df_raw, groupby_col, '2')
 
         elif choice == '3':
+            clear_terminal()
             print(cyan + bright + "Where do you eat breakfast?" + reset)
             display_percentages(df_raw, groupby_col, '3')
 
         elif choice == '4':
+            clear_terminal()
             print(cyan + bright + "At what time do you eat breakfast?" + reset)
             display_percentages(df_raw, groupby_col, '4')
 
         elif choice == '5':
+            clear_terminal()
             print(cyan + bright + "What do you drink with breakfast?" + reset)
             display_percentages(df_raw, groupby_col, '5')
 
         elif choice == '6':
+            clear_terminal()
             print(cyan + bright + "What do you eat for breakfast?" + reset)
             display_percentages(df_raw, groupby_col, '6')
 
