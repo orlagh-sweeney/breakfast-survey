@@ -265,7 +265,9 @@ def question_and_log_results(question, options, user_answers):
     This function displays the questions and options to the user
     and logs the answers from the user
     """
-    print(question, *options, sep='\n')
+    print(f'{question}\n')
+    for (i, option) in enumerate(options, start=1):
+        print(f"{i}: {option}\n")
     answer = input('Type you answer choice here:\n')
     index = int(answer)
     logged_answer = options[index-1]
