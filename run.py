@@ -41,7 +41,7 @@ def clear_terminal():
     os.system("clear")
 
 
-def route_selection(df):
+def route_selection(df_raw):
     """
     This function allows the user to select if they want
     to view results or take the survey
@@ -55,7 +55,7 @@ def route_selection(df):
         # selection statement to validate user input choice
         if route_choice == '1':
             clear_terminal()
-            results_selection(df)
+            results_selection(df_raw)
             break
         if route_choice == '2':
             clear_terminal()
@@ -65,7 +65,7 @@ def route_selection(df):
         print(red + 'Invalid choice. Please try again.\n' + reset)
 
 
-def results_selection(df):
+def results_selection(df_raw):
     """
     This function allows the user to select in which form they
     would like to view the results
@@ -80,11 +80,11 @@ def results_selection(df):
         # selection statement to validate user input choice
         if analysis_type == '1':
             clear_terminal()
-            question_selection(df, groupby_col='gender')
+            question_selection(df_raw, groupby_col='gender')
             break
         if analysis_type == '2':
             clear_terminal()
-            question_selection(df, groupby_col='age group')
+            question_selection(df_raw, groupby_col='age group')
             break
 
         print(red + 'Invalid choice. Please try again.\n' + reset)
@@ -440,12 +440,12 @@ You can view the results or add to the data by completing the survey.
     )
 
 
-def main(df):
+def main(df_raw):
     """
     Run all program functions
     """
     welcome()
-    route_selection(df)
+    route_selection(df_raw)
 
 
-main(df=df)
+main(df_raw=df)
