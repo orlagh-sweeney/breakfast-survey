@@ -67,8 +67,8 @@ def route_selection(df_raw):
 
 def results_selection(df_raw):
     """
-    This function allows the user to select in which form they
-    would like to view the results
+    This function allows the user to select if they would like to 
+    view results by gender or age group
     """
     while True:
         print(yellow + "\nPlease select from the following options:\n" + reset)
@@ -93,7 +93,7 @@ def results_selection(df_raw):
 def question_selection(df_raw, groupby_col):
     """
     This function allows the user to selected which question
-    they would like to set the results for
+    they would like to see the results for
     """
     while True:
         print(yellow + "\nSelect a question from the following options:\n" + reset)
@@ -157,12 +157,17 @@ def question_selection(df_raw, groupby_col):
 
 def display_percentages(df_raw, groupby_col, question_num):
     """
-    This function calculates the total numbers of males
+    This function calculates percentages of each possible answer
+    based on groupby_col i.e. if the users chooses to view results 
+    by gender or age group
     """
+    # after question 1.1 show results only for people who eat breakfast 
     if question_num not in ['1', '1.1']:
         df_raw = df_raw[df_raw['question 1'] == 'Yes']
     elif question_num == '1.1':
         df_raw = df_raw[df_raw['question 1'] == 'No']
+    
+    # calculate percentage based on groupby_col
     question_col = f"question {question_num}"
     df_group = df_raw.groupby([groupby_col, question_col]).size().reset_index()
     df_group.rename(columns={0: 'counts'}, inplace=True)
@@ -176,6 +181,7 @@ def display_percentages(df_raw, groupby_col, question_num):
         lambda x: f'{int(x)}%'
     )
 
+    # convert table to wide format
     wide_table = pd.pivot(
         df_group,
         index=groupby_col,
@@ -183,9 +189,11 @@ def display_percentages(df_raw, groupby_col, question_num):
         values='percentage'
     )
 
+    # removes empty columns and replace null values with 0%
     if "" in wide_table.columns:
         wide_table.drop(columns="", inplace=True)
     wide_table.fillna('0%', inplace=True)
+
     print(cyan + bright + tabulate(wide_table, headers='keys', tablefmt='psql') + reset)
 
 
