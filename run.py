@@ -208,15 +208,14 @@ def end_program():
     This displays a goodbye message and the
     option to restart the program
     """
-    print(yellow +
-        """\
+    print(yellow + """\
  ## ##    ## ##    ## ##   ### ##   ### ##   ##  ##   ### ###
 ##   ##  ##   ##  ##   ##   ##  ##   ##  ##  ##  ##    ##  ##
 ##       ##   ##  ##   ##   ##  ##   ##  ##  ##  ##    ##
 ##  ###  ##   ##  ##   ##   ##  ##   ## ##    ## ##    ## ##
 ##   ##  ##   ##  ##   ##   ##  ##   ##  ##    ##      ##
 ##   ##  ##   ##  ##   ##   ##  ##   ##  ##    ##      ##  ##
- ## ##    ## ##    ## ##   ### ##   ### ##     ##     ### ### 
+ ## ##    ## ##    ## ##   ### ##   ### ##     ##     ### ###
     """ + reset)
 
     while True:
@@ -412,8 +411,7 @@ def welcome():
     """
     Displays a welcome message and introduction to the survey
     """
-    print(yellow +
-        """\
+    print(yellow + """\
                              #        #                   #
  ####                        #       ###                  #
  #   #                       #  #    #                   ###
@@ -431,8 +429,7 @@ def welcome():
          ##     ###   #       ##     ###     ##
                                            #  #
                                             ##
-    """
-    + reset)
+    """ + reset)
 
     print(
         """
