@@ -37,7 +37,8 @@ def clear_terminal():
     This function clears the terminal
     Code taken from Stackoverflow solution by user 'Poke'
     """
-    os.system('cls' if os.name == 'nt' else 'clear')
+    # os.system('cls' if os.name == 'nt' else 'clear')
+    os.system("clear")
 
 
 def route_selection(df):
