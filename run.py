@@ -369,9 +369,8 @@ def display_survey():
         },
         9: {
             'question': 'What do you eat for breakfast?',
-            'options': ['Cereal', 'Porridge', 'Yoghurt with granola/fruit',
-                        'Toast', 'Eggs', 'Protein shake/meal replacement',
-                        'Other']
+            'options': ['Cereal', 'Yoghurt',
+                        'Toast', 'Eggs', 'Protein shake']
         },
     }
 
