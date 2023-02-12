@@ -50,7 +50,9 @@ def route_selection(df_raw):
         print(yellow + "To view the survey results, type '1' below." + reset)
         print(yellow + "To take the survey, type '2' below.\n" + reset)
 
-        route_choice = input(green + "Type your choice here then press enter:\n" + reset)
+        route_choice = input(
+            green + "Type your choice here then press enter:\n" + reset
+        )
 
         # selection statement to validate user input choice
         if route_choice == '1':
@@ -67,7 +69,7 @@ def route_selection(df_raw):
 
 def results_selection(df_raw):
     """
-    This function allows the user to select if they would like to 
+    This function allows the user to select if they would like to
     view results by gender or age group
     """
     while True:
@@ -75,7 +77,9 @@ def results_selection(df_raw):
         print("1 - View results by Gender")
         print("2 - View results by Age Group\n")
 
-        analysis_type = input(green + "Type your choice here then press enter:\n" + reset)
+        analysis_type = input(
+            green + "Type your choice here then press enter:\n" + reset
+        )
 
         # selection statement to validate user input choice
         if analysis_type == '1':
@@ -96,7 +100,11 @@ def question_selection(df_raw, groupby_col):
     they would like to see the results for
     """
     while True:
-        print(yellow + "\nSelect a question from the following options:\n" + reset)
+        print(
+            yellow
+            + "\nSelect a question from the following options:\n"
+            + reset
+        )
         print("1 - Do you eat breafast?")
         print("1.1 - Why do you not eat breakfast?")
         print("2 - How many days per week do you eat breakfast?")
@@ -107,7 +115,9 @@ def question_selection(df_raw, groupby_col):
 
         print("To return to the beginning, type 'exit'\n")
 
-        choice = input(green + "Type your choice here then press enter:\n" + reset)
+        choice = input(
+            green + "Type your choice here then press enter:\n" + reset
+        )
 
         # selection statement to validate user input choice
         if choice == '1':
@@ -122,7 +132,10 @@ def question_selection(df_raw, groupby_col):
 
         elif choice == '2':
             clear_terminal()
-            print(cyan + bright + "How many days per week do you eat breakfast?" + reset)
+            print(
+                cyan + bright + "How many days per week do you eat breakfast?"
+                + reset
+            )
             display_percentages(df_raw, groupby_col, '2')
 
         elif choice == '3':
@@ -158,15 +171,15 @@ def question_selection(df_raw, groupby_col):
 def display_percentages(df_raw, groupby_col, question_num):
     """
     This function calculates percentages of each possible answer
-    based on groupby_col i.e. if the users chooses to view results 
+    based on groupby_col i.e. if the users chooses to view results
     by gender or age group
     """
-    # after question 1.1 show results only for people who eat breakfast 
+    # after question 1.1 show results only for people who eat breakfast
     if question_num not in ['1', '1.1']:
         df_raw = df_raw[df_raw['question 1'] == 'Yes']
     elif question_num == '1.1':
         df_raw = df_raw[df_raw['question 1'] == 'No']
-    
+
     # calculate percentage based on groupby_col
     question_col = f"question {question_num}"
     df_group = df_raw.groupby([groupby_col, question_col]).size().reset_index()
@@ -194,7 +207,10 @@ def display_percentages(df_raw, groupby_col, question_num):
         wide_table.drop(columns="", inplace=True)
     wide_table.fillna('0%', inplace=True)
 
-    print(cyan + bright + tabulate(wide_table, headers='keys', tablefmt='psql') + reset)
+    print(
+        cyan + bright + tabulate(wide_table, headers='keys', tablefmt='psql')
+        + reset
+    )
 
 
 def update_worksheet(user_answers):
@@ -230,7 +246,9 @@ def end_program():
         print('Not ready to leave yet?')
         print('Type 1 below restart the program.\n')
 
-        choice = input(green + "Type your choice here then press enter:\n" + reset)
+        choice = input(
+            green + "Type your choice here then press enter:\n" + reset
+        )
 
         if choice == '1':
             clear_terminal()
@@ -243,7 +261,7 @@ def end_program():
 
 def end_survey():
     """
-    This displays a thank you message to the user and 
+    This displays a thank you message to the user and
     an option to view the survey results
     """
     while True:
@@ -253,7 +271,9 @@ def end_survey():
         print(yellow + 'To view the survey results, type 1.')
         print('To end the program, type 2.\n' + reset)
 
-        choice = input(green + "Type your choice here then press enter:\n" + reset)
+        choice = input(
+            green + "Type your choice here then press enter:\n" + reset
+        )
 
         if choice == '1':
             clear_terminal()
@@ -277,7 +297,9 @@ def submit_survey(questions_answered, user_answers):
     print('Thank you taking this survey.\n')
     print('Please review your answers then submit or retake the survey:\n')
 
-    for question_answered, user_answer in zip(questions_answered, user_answers):
+    iterator = zip(questions_answered, user_answers)
+
+    for question_answered, user_answer in iterator:
         print(f"{question_answered}: {user_answer}")
         if user_answer == '':
             continue
@@ -285,7 +307,9 @@ def submit_survey(questions_answered, user_answers):
     while True:
         print(yellow + '\nTo submit your answers, type 1 below.')
         print('To re-take the survey, type 2 below.\n' + reset)
-        choice = input(green + "Type your choice here then press enter:\n" + reset)
+        choice = input(
+            green + "Type your choice here then press enter:\n" + reset
+        )
 
         if choice == '1':
             clear_terminal()
@@ -385,7 +409,12 @@ def display_survey():
     submit_survey(questions_answered, user_answers)
 
 
-def question_and_log_results(question, options, user_answers, questions_answered):
+def question_and_log_results(
+    question,
+    options,
+    user_answers,
+    questions_answered
+):
     """
     This function displays the questions and answer options to the user
     It validates users input and stores answers from the user
@@ -401,7 +430,10 @@ def question_and_log_results(question, options, user_answers, questions_answered
     answer = input(green + '\nType your answer choice here:\n' + reset)
     # validates user input against the enumerate values
     while answer not in valid:
-        print(red + f'Invalid choice, you must enter a number from: {valid}' + reset)
+        print(
+            red + f'Invalid choice, you must enter a number from: {valid}'
+            + reset
+        )
         answer = input(green + 'Type your answer choice here:\n' + reset)
     # uses the index of the answer option in the q_and_o dictionary to
     # get the string value and append it to users_answers
