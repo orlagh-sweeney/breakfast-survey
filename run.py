@@ -17,13 +17,14 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('breakfast_survey')
 
+# connect Pandas to Google Sheets
+# code taken from GitHub user Asha Ponnada
 data = SHEET.worksheet('bkdata').get_all_values()
-
 headers = data.pop(0)
 df = pd.DataFrame(data, columns=headers)
 df.head()
-# print(df)
 
+# Colorama colours for the terminal
 red = Fore.RED  # colour for error messages
 yellow = Fore.YELLOW  # colour for instructions
 green = Fore.GREEN  # colour for inputs
@@ -35,10 +36,9 @@ reset = Style.RESET_ALL  # resets the colours
 def clear_terminal():
     """
     This function clears the terminal
-    Code taken from Stackoverflow solution by user 'Poke'
     """
-    # os.system('cls' if os.name == 'nt' else 'clear')
-    os.system("clear")
+    # code take from Stackoverflow user poke
+    os.system('cls' if os.name == 'nt' else 'clear')
 
 
 def route_selection(df_raw):
@@ -66,6 +66,8 @@ def route_selection(df_raw):
 
         print(red + 'Invalid choice. Please try again.\n' + reset)
 
+
+# SURVEY ANALYSIS FUNCTIONS
 
 def results_selection(df_raw):
     """
@@ -172,15 +174,16 @@ def display_percentages(df_raw, groupby_col, question_num):
     """
     This function calculates percentages of each possible answer
     based on groupby_col i.e. if the users chooses to view results
-    by gender or age group
+    by gender or age group.
     """
+    # Pandas and Numpy are used in this function
     # after question 1.1 show results only for people who eat breakfast
     if question_num not in ['1', '1.1']:
         df_raw = df_raw[df_raw['question 1'] == 'Yes']
     elif question_num == '1.1':
         df_raw = df_raw[df_raw['question 1'] == 'No']
 
-    # calculate percentage based on groupby_col
+    # calculate percentage based on groupby_col and qustion_num
     question_col = f"question {question_num}"
     df_group = df_raw.groupby([groupby_col, question_col]).size().reset_index()
     df_group.rename(columns={0: 'counts'}, inplace=True)
@@ -202,27 +205,34 @@ def display_percentages(df_raw, groupby_col, question_num):
         values='percentage'
     )
 
-    # removes empty columns and replace null values with 0%
+    # removes empty columns and replaces null values with 0%
     if "" in wide_table.columns:
         wide_table.drop(columns="", inplace=True)
     wide_table.fillna('0%', inplace=True)
 
+    # code from Stackoverflow user Romain
     print(
         cyan + bright + tabulate(wide_table, headers='keys', tablefmt='psql')
         + reset
     )
 
 
+# SURVEY FUNCTIONS
+
 def update_worksheet(user_answers):
     """
-    Add user ID to the start of the user answers list.
-    Update the google sheet with user answers by
-    adding a new row the the sheet.
+    Add user ID to the start of the user answers list
+    by getting the index and adding 2
+    Update Google Sheets with user answers by
+    adding a new row the end of the sheet.
     """
+    # Pandas is used here
+    # add new user ID to user_answers before pushing to Google Sheets
     index = df.index.tolist().pop()
     user_id = index + 2
     user_answers.insert(0, user_id)
 
+    # push data to Google Sheets
     worksheet = SHEET.worksheet("bkdata")
     worksheet.append_row(user_answers)
 
@@ -250,6 +260,7 @@ def end_program():
             green + "Type your choice here then press enter:\n" + reset
         )
 
+        # selection statement to validate user input choice
         if choice == '1':
             clear_terminal()
             main(df)
@@ -275,6 +286,7 @@ def end_survey():
             green + "Type your choice here then press enter:\n" + reset
         )
 
+        # selection statement to validate user input choice
         if choice == '1':
             clear_terminal()
             results_selection(df)
@@ -297,10 +309,12 @@ def submit_survey(questions_answered, user_answers):
     print('Thank you taking this survey.\n')
     print('Please review your answers then submit or retake the survey:\n')
 
+    # displays questions answered by the user with the answer they gave
     iterator = zip(questions_answered, user_answers)
 
     for question_answered, user_answer in iterator:
         print(f"{question_answered}: {user_answer}")
+        # if the answer is '' do not display the question
         if user_answer == '':
             continue
 
@@ -311,6 +325,7 @@ def submit_survey(questions_answered, user_answers):
             green + "Type your choice here then press enter:\n" + reset
         )
 
+        # selection statement to validate user input choice
         if choice == '1':
             clear_terminal()
             update_worksheet(user_answers)
@@ -422,12 +437,14 @@ def question_and_log_results(
     valid = []
     print(yellow + f'\n{question}\n' + reset)
     # allocates a number to the answer options for the user to choose from
+    # enumerate code from Stackoverflow user Leejay Schmidt
     for (i, option) in enumerate(options, start=1):
         i = str(i)
         valid.append(i)
         print(f"{i}: {option}")
     answer = input(green + '\nType your answer choice here:\n' + reset)
     # validates user input against the enumerate values
+    # code uses solution from Tutorial Eyehunt by Rohit.
     while answer not in valid:
         print(
             red + f'Invalid choice, you must enter a number from: {valid}'
@@ -478,6 +495,8 @@ You can view the results or add to the data by completing the survey.
         """
     )
 
+
+# MAIN FUNCTION
 
 def main(df_raw):
     """
