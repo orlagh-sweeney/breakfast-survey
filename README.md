@@ -8,12 +8,13 @@
     - [Data Model](#data-model)
     - [Flowchart](#flowchart)
 2. [Features](#features)
-    - [Take Survey or View Analysis](#take-survey-or-view-analysis)
-    - [View Analysis by Gender or Age Group](#view-analysis-by-gender-or-age-group)
-    - [Question Selection](#question-selection)
-    - [Return to the Beginning](#return-to-beginning)
+    - [Welcome & Take Survey or View Analysis](#welcome--take-survey-or-view-analysis)
+    - [View Results by Gender or Age Group](#view-results-by-gender-or-age-group)
+    - [Display Results by Question](#display-results-by-question)
     - [Take Survey](#take-survey)
-    - [Input Answers](#input-answers)
+    - [Review Answers: Submit or Retake](#review-answers-submit-or-retake)
+    - [Update Worksheet and End Program](#update-worksheet-and-end-program)
+    - [Goodbye](#goodbye)
 3. [Technololgies Used](#technologies-used)
     - [Languages](#languages)
     - [Frameworks, Libraries and Programmes](#frameworks-libraries-and-programmes)
@@ -67,13 +68,13 @@ If a user answers no to 'Do you eat breakfast?', the survey ends after they expl
 
 ## Features
 
-### Take Survey or View Analysis
-### View Analysis by Gender or Age Group
-### Question Selection
-### Return to Beginning
+### Welcome & Take Survey or View Analysis
+### View Results by Gender or Age Group
+### Display Results by Question
 ### Take Survey 
-### Input Answers
-
+### Review Answers: Submit or Retake
+### Update Worksheet and End Program
+### Goodbye
 
 ## Technologies Used
 ### Languages
@@ -140,6 +141,16 @@ Restart Program | If the user choose to restart the program, the main function i
 - When the user was finished viewing results and wanted to exit this function, the 'exit' or 'EXIT' inputs were not working. I changed the code from "else choice = “exit” or ‘EXIT’" to "else choice in (‘exit’ ‘EXIT)" which solved the issue. The user is now able to exit this section of the program. 
 
 ## Deployment
+The program was developed in Gitpod. It was then commited and pushed to GitHub.
+The finished project was deployed in Heroku using hte Code Institue Python Terminal for display purposes. 
+Deployment to Heroku was completed using the following steps: 
+1.
+2.
+3.
+4.
+5.
+6.
+7.
 
 ## Credit
 ### Content
@@ -163,6 +174,8 @@ Documentation and PyPI resources for Pandas, Numpy, Tabulate and Colorama were r
 - [Colorama - PyPI](https://pypi.org/project/colorama/) 
 
 To validate user input for survey answers in the question_and_log_results function I used a solution from [Tutorial Eyehunt by Rohit](https://tutorial.eyehunts.com/python/python-while-loop-input-validation-example-code/).
+
+To see how to correctly set up Pandas with Google Sheets I used solution by GitHub user [Asha Ponnada](https://github.com/Asha-ai/googlespredsheets/blob/master/googlesheet_as_pandasdf.ipynb).
 
 ## Acknowledgements
 - Thank you to my mentor Marcel for his feedback and suggestions at each stage of the project.
