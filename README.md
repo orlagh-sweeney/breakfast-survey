@@ -92,9 +92,52 @@ If a user answers no to 'Do you eat breakfast?', the survey ends after they expl
 
 ## Testing
 ### Testing User Stories
+- As a user, I want to understand what the program is for and how to use it.
+    - The program tells me that it is a survey about breakfast and gives instructions on how to proceed.
+- As a user, I want to be able to choose whether to take the survey or view results.
+    - The program gives me the option to view the survey results or take the survey,
+- As a user, I want to be able to choose what questions I view the data for.
+    - The sruvey allows me to choose which question to view results for and easily switch between questions.
+- As a user, I want to be able to take the survey.
+    - The program gives me the option to take the survey at the beginning and displays each question.
+- As a user, I want to be able to review my answers before submitting or take the survey again.
+    - After answering the questions the program shows my answers then asks me if I want to submit or take the survey again. 
+- As a user, I want to be able to exit or restart the program. 
+    - The program gives me the options to exit the program while viewing results or after taking the survey.
+
 ### Code Validation
+The codes passes through the Code Institute PEP8 Linter with no errors. 
+
 ### Feature Testing
+I have manually tested the following features in Gitpod and in the Code Institute Heroku terminal:
+TEST       | DESIRED RESULT          | PASS/FAIL |
+---------- | ----------------------- | --------- |
+Welcome Message | When the program first runs the welcome message and route selection options are displayed. | PASS
+Route Selection | When '1' is typed in the terminal, results_selection is called and the user is asked how they want to view the results. When '2' is typed in the terminal, display_survey is called and the user is brought to the survey. | PASS 
+Route Selection Validation | If the user types anything other than '1' or '2' they are shown an error message and asked to try again. | PASS
+Results Selection | When '1' is typed in the terminal, the program loads data on Gender. When '2' is typed in the terminal, the program loads data on Age Group. | PASS
+Results Selection Validation | If the user types anything other than '1' or '2' they are shown an error message and asked to try again. | PASS
+Results Question Selection | If the user types anything form (1, 1.1, 2, 3, 4, 5 or 6) they are shown the data for the correct question. If they type 'exit' or 'EXIT' the program ends and they return to Route Selection area. | PASS
+Results Question Selection Validation | If the user types anything other than (1, 1.1, 2, 3, 4, 5, 6, exit or EXIT) they are shown an error message and asked to try again. | PASS
+Display Survey | The survey loads each question with the correct set of answers options. | PASS
+Survey Answer Selection Validation | If the users enters an invalid input they are shown an error message and asked to try again. The error message displays a list of numbers from which they can choose. | PASS
+If 'Do you eat breafast?' = 'No' | The user is presented with a follow up question, 'Why do you not eat breakfast', after this the survey ends. | PASS
+If 'Do you east breakfast? = 'Yes' | The survey skips the question 'Why do you not eat breakfast' and continues the survey until the end. | PASS
+Survey Ends: Display Questions | Once the user has answered all the questions the survey ends and they are shown their answers. The correct selection of questions and answers are displayed. | PASS
+Survey Ends: Submit or Retake | The users is asked to review and submit their answers or if they want to retake the survey.  If the users types '1' their results are submitted, if the user types '2' the survey reloads. | PASS
+Survey Ends Validation | If the user types anything other than '1' or '2' they are shown an error message and asked to try again. | PASS
+Submit Results | When the user submits their results the update_worksheet function is called and the data is pushed to Google Sheets. Empty data is handled appropriately by leaving the relevant column/columns empty. | PASS
+End Survey | When the user submits their answers the end_survey function is called. They are asked if they want to view the survey results by typing '1' or end the program by typing '2'.  | PASS
+End Survey Validation | If the user types anything other than '1' or '2' they are shown an error message and asked to try again. | PASS
+End Program | If the users chooses to end the program, the end_program function is called which displays a goodbye message and an option to retart the program by typing '1'. | PASS
+End Program Validation | If the user types anything other than '1' they are shown an error message and asked to try again. | PASS
+Restart Program | If the user choose to restart the program, the main function is called and the user is brought back to the beginning of the program | PASS
+
 ### Bugs
+1. Answering survey questions: 
+- When the user submitted their answer to a survey question, there was an error when comparing and validating user input with the valid answers. To validate and store the users survey answers, the program compares the users input with the enumerate values assigned the answer option which are stored in a variable called Valid. The enumerate value is an integer and the user input from the terminal is a string which was causing an error when validating. To fix this I converted the enumerate values to a string before appending these values to the Valid list. 
+2. Exit 'View Results':
+- When the user was finished viewing results and wanted to exit this function, the 'exit' or 'EXIT' inputs were not working. I changed the code from "else choice = “exit” or ‘EXIT’" to "else choice in (‘exit’ ‘EXIT)" which solved the issue. The user is now able to exit this section of the program. 
 
 ## Deployment
 
