@@ -57,7 +57,7 @@ Colorama has been used to apply colour to the terminal to make it more readable.
 ### Data Model
 The program uses Google Sheets to store data in columns. The worksheet has a column that applies a unique user ID for each user and a column for each survey question. 
 
-The program uses a series of functions to display the survey results; results_selections asks the user if they want to view results by Gender or Age Group, then question_selection asks the user to choose which question they want view results for. This information is then passed into display_percentages which uses Pandas to analyse the data and calculate percentages which are presented in table format to the user. 
+The program uses a series of functions to display the survey results; results_selections asks the user if they want to view results by Gender or Age Group, then question_selection asks the user to choose which question they want view results for. The data is stored in a Pandas data frame. This information is then passed into display_percentages which uses Pandas to analyse the data and calculate percentages which are presented in table format to the user. 
 
 When taking the survey, the users answers are stored in a variable called user_answers which updates each time a question is answered. After the last question is answered the user is asked to review and submit their results or take the quiz again. If the user clicks the submit the data is pushed to the Google Sheets worksheet. 
 
@@ -65,6 +65,7 @@ If a user answers no to 'Do you eat breakfast?', the survey ends after they expl
 
 ### Flowchart
 [Lucid](https://lucid.app/documents#/dashboard) was used in the planning stage of the project to plan the logic and data flow. 
+The flowchart does not include every validation as it would make the chart too cluttered, however every time user input is required validation has been used.
 
 ## Features
 
