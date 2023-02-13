@@ -32,22 +32,38 @@
 ## User Experience (UX)
 
 ### Project Goals
-- Analyse survey results 
-- Collect survey responses
-- Display results in a format that is easy for the user to read
-- Use input validation for user input
-- Store survey data in a Google Sheet
+- Analyse survey results.
+- Collect survey responses.
+- Display results in a format that is easy for the user to read.
+- Use input validation for user input.
+- Store survey data in Google Sheets.
 
 ### User Stories
 - As a user, I want to understand what the program is for and how to use it.
 - As a user, I want to be able to choose whether to take the survey or view results.
 - As a user, I want to be able to choose what questions I view the data for.
 - As a user, I want to be able to take the survey.
+- As a user, I want to be able to review my answers before submitting or take the survey again.
 - As a user, I want to be able to exit or restart the program. 
 
 ### Colour Scheme
+Colorama has been used to apply colour to the terminal to make it more readable. 
+- Instructions are displayed in yellow.
+- Inputs are displayed in green.
+- Error messages are displayed in red.
+- Tables are displayed in cyan.
+
 ### Data Model
+The program uses Google Sheets to store data in columns. The worksheet has a column that applies a unique user ID for each user and a column for each survey question. 
+
+The program uses a series of functions to display the survey results; results_selections asks the user if they want to view results by Gender or Age Group, then question_selection asks the user to choose which question they want view results for. This information is then passed into display_percentages which uses Pandas to analyse the data and calculate percentages which are presented in table format to the user. 
+
+When taking the survey, the users answers are stored in a variable called user_answers which updates each time a question is answered. After the last question is answered the user is asked to review and submit their results or take the quiz again. If the user clicks the submit the data is pushed to the Google Sheets worksheet. 
+
+If a user answers no to 'Do you eat breakfast?', the survey ends after they explain why. Furthermore, their data is not used when analysing the remaining questions, meaning that questions 5-9 are only analysed based on people who eat breafast. 
+
 ### Flowchart
+[Lucid](https://lucid.app/documents#/dashboard) was used in the planning stage of the project to plan the logic and data flow. 
 
 ## Features
 
