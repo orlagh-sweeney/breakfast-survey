@@ -85,7 +85,7 @@ If a user answers no to 'Do you eat breakfast?', the survey ends after they expl
 - [Tabulate](https://pypi.org/project/tabulate/): this was used to display data in tables. 
 - [Pandas](https://pypi.org/project/pandas/): this was used to analyse survey data.
 - [Numpy](https://pypi.org/project/numpy/): this was used to analyse survey data.
-- [Gspread](https://docs.gspread.org/en/v5.7.0/): this is the API for the google which stores the survey data. 
+- [Gspread](https://docs.gspread.org/en/v5.7.0/): this is the API for the Google Sheets which stores the survey data. 
 - [Gitpod](https://www.gitpod.io/): this was used to write, commit and to push the code to GitHub. 
 - [GitHub](https://github.com/): this was used to store the project and for version control.
 - [Heroku](https://dashboard.heroku.com/login): this was used to host and deploy the finished project.
@@ -100,7 +100,27 @@ If a user answers no to 'Do you eat breakfast?', the survey ends after they expl
 
 ## Credit
 ### Content
+Content was written by the developer. 
+
 ### Media
+[ASCII generator](https://ascii-generator.site/t/) - this was used to create the welcome and goodbye messages. 
+
 ### Code
+[Stackoverflow](https://stackoverflow.com/) and [W3Schools](https://www.w3schools.com/) were used throughout the development to educate myself and to seek help and clarification on features. In particular I used the following sources:
+- Printing a Pandas dataframe: answer by Stackoverflow user [Romain](https://stackoverflow.com/a/31885295).
+- How to enumerate a list: answer by Stackoverflow user [Leejay Schmidt](https://stackoverflow.com/a/34754025).
+- How to clear the terminal: answer by Stackoverflow user [poke](https://stackoverflow.com/a/2084628).
+
+Documentation and PyPI resources for Pandas, Numpy, Tabulate and Colorama were referred to throughout the development to learn how to use these libraries:
+- [Pandas](https://pandas.pydata.org/pandas-docs/stable/index.html)
+- [Pandas - PyPI](https://pypi.org/project/pandas/)
+- [Numpy](https://numpy.org/doc/stable/index.html)
+- [Numpy - PyPI](https://pypi.org/project/numpy/)
+- [Tabulate - PyPI](https://pypi.org/project/tabulate/) 
+- [Colorama - PyPI](https://pypi.org/project/colorama/) 
+
+To validate user input for survey answers in the question_and_log_results function I used a solution from [Tutorial Eyehunt by Rohit](https://tutorial.eyehunts.com/python/python-while-loop-input-validation-example-code/).
 
 ## Acknowledgements
+- Thank you to my mentor Marcel for his feedback and suggestions at each stage of the project.
+- Thank you to Code Institute for providing me with the tools and skills to complete this project. 
