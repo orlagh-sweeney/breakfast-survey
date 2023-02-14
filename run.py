@@ -64,7 +64,8 @@ def route_selection(df_raw):
             display_survey()
             break
 
-        print(red + 'Invalid choice. Please try again.\n' + reset)
+        print(red + 'Invalid choice. Please try again' + reset)
+        print(red + "You must enter a number such as '1'.\n" + reset)
 
 
 # SURVEY ANALYSIS FUNCTIONS
@@ -93,7 +94,8 @@ def results_selection(df_raw):
             question_selection(df_raw, groupby_col='age group')
             break
 
-        print(red + 'Invalid choice. Please try again.\n' + reset)
+        print(red + 'Invalid choice. Please try again.' + reset)
+        print(red + "You must enter a number such as '1'.\n" + reset)
 
 
 def question_selection(df_raw, groupby_col):
@@ -115,7 +117,7 @@ def question_selection(df_raw, groupby_col):
         print("5 - What do you drink with breakfast?")
         print("6 - What do you eat for breakfast?\n")
 
-        print("To return to the beginning, type 'exit'\n")
+        print("To retart the program, type 'exit'\n")
 
         choice = input(
             green + "Type your choice here then press enter:\n" + reset
@@ -165,7 +167,12 @@ def question_selection(df_raw, groupby_col):
             route_selection(df)
 
         else:
-            print(red + "Invalid choice. Please try again.\n" + reset)
+            print(red + "Invalid choice. Please try again." + reset)
+            print(
+                red + "Enter the question number such as '1' or '1.1'."
+                + reset
+            )
+            print(red + "To restart the program, type 'exit' .\n" + reset)
 
     return choice
 
@@ -254,7 +261,7 @@ def end_program():
 
     while True:
         print('Not ready to leave yet?')
-        print('Type 1 below restart the program.\n')
+        print("Type '1' below restart the program.\n")
 
         choice = input(
             green + "Type your choice here then press enter:\n" + reset
@@ -265,7 +272,8 @@ def end_program():
             clear_terminal()
             main(df)
 
-        print(red + "Invalid choice. Please try again.\n" + reset)
+        print(red + "Invalid choice. Please try again." + reset)
+        print(red + "You must enter a number such as '1'.\n" + reset)
 
     return choice
 
@@ -296,7 +304,8 @@ def end_survey():
             end_program()
             break
 
-        print(red + "Invalid choice. Please try again.\n" + reset)
+        print(red + "Invalid choice. Please try again." + reset)
+        print(red + "You must enter a number such as '1'.\n" + reset)
 
     return choice
 
@@ -335,7 +344,8 @@ def submit_survey(questions_answered, user_answers):
             clear_terminal()
             display_survey()
 
-        print(red + "Invalid choice. Please try again.\n" + reset)
+        print(red + "Invalid choice. Please try again." + reset)
+        print(red + "You must enter a number such as '1'.\n" + reset)
 
     return choice
 
@@ -477,7 +487,6 @@ def welcome():
  #   #  #      ##     #  #   #  #    #     #  #     ##    # #
  ####   #       ###    ####  #  #    #      ####  ####     #
 
-
          ##
         #  #
          #     #  #   # #    #  #    ##    #  #
@@ -487,12 +496,15 @@ def welcome():
                                            #  #
                                             ##
     """ + reset)
-
     print(
         """
-Welcome to the Breakfast Survey.\n
-This survey analyses breakfast eating habits based on gender and age.\n
-You can view the results or add to the data by completing the survey.
+Welcome to the Breakfast Survey! \n
+This survey analyses breakfast eating habits based on gender and age. The
+program allows you to view the survey results or add to the data by completing
+the survey. \n
+To submit an answer to a survey question, or to complete an action such as the
+ones highlighted in yellow below, you must type the number or word that has
+been assigned to the action or question answer. Then press enter to submit.
         """
     )
 
