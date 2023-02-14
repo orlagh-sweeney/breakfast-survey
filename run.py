@@ -325,7 +325,7 @@ def submit_survey(questions_answered, user_answers):
         # if the answer is '' do not display the question
         if (user_answer == '') and (question_answered == ''):
             continue
-        print(f"{question_answered}: {user_answer}")
+        print(f"{question_answered}: {yellow}{user_answer}{reset}")
 
     while True:
         print(yellow + '\nTo submit your answers, type 1 below.')
