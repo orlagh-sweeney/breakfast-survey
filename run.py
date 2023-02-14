@@ -313,10 +313,10 @@ def submit_survey(questions_answered, user_answers):
     iterator = zip(questions_answered, user_answers)
 
     for question_answered, user_answer in iterator:
-        print(f"{question_answered}: {user_answer}")
         # if the answer is '' do not display the question
-        if user_answer == '':
+        if (user_answer == '') and (question_answered == ''):
             continue
+        print(f"{question_answered}: {user_answer}")
 
     while True:
         print(yellow + '\nTo submit your answers, type 1 below.')
@@ -406,6 +406,7 @@ def display_survey():
             # when pushing the data to google sheets later
             if user_answers[-1] == 'Yes':
                 user_answers.append('')
+                questions_answered.append('')
                 continue
             # ends the survey if question 4 was answered
             else:
