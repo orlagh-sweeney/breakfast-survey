@@ -1,4 +1,9 @@
 # Breakfast Survey and Analysis
+This Breakfast Survey and Analyis project has been built to give users insights into breakfast habits of people based on Gender and Age Group. There are two core aspects to this program, the option to view the results of the survey and the option to take the survey to contribute to the data. 
+
+This project was built as my 3rd portfolio project following completion of the Code Institute Python module. 
+
+The project can be viewed here: 
 
 ## Table of Contents
 1. [User Experience](#user-experience-ux)
@@ -70,12 +75,40 @@ The flowchart does not include every validation as it would make the chart too c
 ## Features
 
 ### Welcome & Take Survey or View Analysis
+<image src=""></image>
+- This sections displays a welcome message to the user. 
+- It explains to the user what the survey is about and gives instructions on how to use the program.
+- It gives to user to option to view the survey results or to take the survey.
+
 ### View Results by Gender or Age Group
+<image src=""></image>
+- This section asks the user if they want to view the survey results by gender or age group.
+
 ### Display Results by Question
+<image src=""></image>
+- This section prompts the user to select a question in order to see the results. 
+- It displays the results in table format along with the question.
+- There is also the option to exit this section and return to the beginning of the program.
+
 ### Take Survey 
+<image src=""></image>
+- This displays the survey questions and answer options to the user. 
+
 ### Review Answers: Submit or Retake
+<image src=""></image>
+- This displays the answer that the user gave for each question.
+- The user is asked to review and submit their answers.
+- The user also has the option to re-take the survey, in this case the survey reloads. 
+
 ### Update Worksheet and End Program
+<image src=""></image>
+- This section informs the user that their survey answers were successfully submitted. 
+- The user is then asked if they want to view the survey results or end the program.
+
 ### Goodbye
+<image src=""></image>
+- This section displays a googbye message to the user.
+- It also gives the option for the user to restart the program if they change their mind. 
 
 ## Technologies Used
 ### Languages
