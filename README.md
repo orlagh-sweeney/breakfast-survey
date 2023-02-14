@@ -138,6 +138,8 @@ Restart Program | If the user choose to restart the program, the main function i
 ### Bugs
 1. Answering survey questions: 
 - When the user submitted their answer to a survey question, there was an error when comparing and validating user input with the valid answers. To validate and store the users survey answers, the program compares the users input with the enumerate values assigned the answer option which are stored in a variable called Valid. The enumerate value is an integer and the user input from the terminal is a string which was causing an error when validating. To fix this I converted the enumerate values to a string before appending these values to the Valid list. 
+3. Displaying the users survey answers:
+- There was a bug when displaying the users survey answers in the terminal. This was due to omitting an empty string in the questions_anwswered list for question 4 and having the print statement in the wrong long. These errors were fixed and the users answers are displayed as expected.
 2. Exit 'View Results':
 - When the user was finished viewing results and wanted to exit this function, the 'exit' or 'EXIT' inputs were not working. I changed the code from "else choice = “exit” or ‘EXIT’" to "else choice in (‘exit’ ‘EXIT)" which solved the issue. The user is now able to exit this section of the program. 
 
@@ -145,13 +147,29 @@ Restart Program | If the user choose to restart the program, the main function i
 The program was developed in Gitpod. It was then commited and pushed to GitHub.
 The finished project was deployed in Heroku using hte Code Institue Python Terminal for display purposes. 
 Deployment to Heroku was completed using the following steps: 
-1.
-2.
-3.
-4.
-5.
-6.
-7.
+1. Run 'pip3 freeze > requirements.txt' in the terminal to add a list of dependencies to requirements.txt
+2. Commit these changes and push to GitHub.
+3. Open and login to [Heroku](https://id.heroku.com/login).
+4. From the dashboard, click 'New', then click 'Create new app' from the dropdown menu. 
+5. Enter the App name, choose a region, then click 'Create app'.
+6. Navigate to the 'Settings' tab.
+7. Within 'Settings', navigate to 'Convig Vars'. Click 'Reveal Config Vars'.
+8. Two config vars need to be added using the following 'KEY' and 'VALUE' pairs:
+    1. KEY = 'CREDS', VALUE = Copy and paste the entire contents of the creds.json file into this field. Then click 'Add'.
+    2. KEY = 'PORT', VALUE = '8000'. Then click 'Add'.
+9. Within 'Settings', navigate to 'Buildpack'. 
+10. Click 'Add buildpack'. Select 'Python', then click 'Save changes'.
+11. Click 'Add buildpack' again. Select 'nodejs', then click 'Save changes'.
+    - Ensure that these buildpacks are in the correct order: Python on top and nodejs underneath. 
+    - If they are in the wrong order, click and drag to fix this. 
+12. Navigate to the 'Deploy' tab. 
+13. Within 'Deploy', navigate to 'Deployment method'. 
+14. Click on 'GitHub'. Navigate to 'Connect to GitHub' and click 'Connect to GitHub' 
+15. Within 'Connect to GitHub', use the search function to find the repository to be deployed. Click 'Connect'.
+16. Navigate to either 'Automatic Deploys' or 'Manual Deploys' to choose which method to deploy the application.
+17. Click on 'Enable Automatic Deploys' or 'Deploy Branch' respectively, depending on chosen method. 
+18. Once the app is finished building, a message saying 'Your app was successfully deployed' will appear.
+19. Click 'View' to see the deployed app. 
 
 ## Credit
 ### Content
