@@ -180,8 +180,6 @@ def question_selection(df_raw, groupby_col):
             )
             print(RED + "To restart the program, type 'exit' .\n" + RESET)
 
-    return choice
-
 
 def display_percentages(df_raw, groupby_col, question_num):
     """
@@ -284,8 +282,6 @@ def end_program():
         print(RED + "Invalid choice. Please try again." + RESET)
         print(RED + "You must enter a number such as '1'.\n" + RESET)
 
-    return choice
-
 
 def end_survey():
     """
@@ -317,8 +313,6 @@ def end_survey():
 
         print(RED + "Invalid choice. Please try again." + RESET)
         print(RED + "You must enter a number such as '1'.\n" + RESET)
-
-    return choice
 
 
 def submit_survey(questions_answered, user_answers):
@@ -359,8 +353,6 @@ def submit_survey(questions_answered, user_answers):
 
         print(RED + "Invalid choice. Please try again." + RESET)
         print(RED + "You must enter a number such as '1'.\n" + RESET)
-
-    return choice
 
 
 def display_survey():
@@ -421,7 +413,7 @@ def display_survey():
         options = question_dict['options']
 
         if question_num <= 3:
-            user_answers = question_and_log_results(
+            user_answers, questions_answered = question_and_log_results(
                 question, options, user_answers, questions_answered
                 )
 
@@ -434,13 +426,13 @@ def display_survey():
                 continue
             # ends the survey if question 4 was answered
             else:
-                user_answers = question_and_log_results(
+                user_answers, questions_answered = question_and_log_results(
                     question, options, user_answers, questions_answered
                     )
                 break
 
         if question_num >= 5:
-            user_answers = question_and_log_results(
+            user_answers, questions_answered = question_and_log_results(
                 question, options, user_answers, questions_answered
                 )
 
@@ -485,7 +477,7 @@ def question_and_log_results(
     questions_answered.append(question)
 
     clear_terminal()
-    return user_answers
+    return user_answers, questions_answered
 
 
 def welcome():
