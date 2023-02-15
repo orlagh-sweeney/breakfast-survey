@@ -1,5 +1,5 @@
 # Breakfast Survey and Analysis
-<image src="assets/readme-files/main-image.png" width="600px"></image>
+<image src="assets/readme-files/main-image.png" width="600px"></image><br>
 This Breakfast Survey and Analyis project has been built to give users insights into breakfast habits of people based on Gender and Age Group. There are two core aspects to this program, the option to view the results of the survey and the option to take the survey to contribute to the data. 
 
 This project was built as my 3rd portfolio project following completion of the Code Institute Python module. 
@@ -68,6 +68,10 @@ The program uses a series of functions to display the survey results; results_se
 When taking the survey, the users answers are stored in a variable called user_answers which updates each time a question is answered. After the last question is answered the user is asked to review and submit their results or take the quiz again. If the user clicks the submit the data is pushed to the Google Sheets worksheet. 
 
 If a user answers no to 'Do you eat breakfast?', the survey ends after they explain why. Furthermore, their data is not used when analysing the remaining questions, meaning that questions 5-9 are only analysed based on people who eat breafast. 
+
+A screenshot of the Google Sheets worksheet can be found below:
+
+<image src="assets/readme-files/google-sheets.png" width="600px"></image><br>
 
 ### Flowchart
 [Lucid](https://lucid.app/documents#/dashboard) was used in the planning stage of the project to plan the logic and data flow. 
