@@ -75,7 +75,7 @@ The flowchart does not include every validation as it would make the chart too c
 ## Features
 
 ### Welcome & Take Survey or View Analysis
-<image src=""></image>
+<image src="assets/readme-files/welcome-message-route.png" width="600px"></image>
 - This sections displays a welcome message to the user. 
 - It explains to the user what the survey is about and gives instructions on how to use the program.
 - It gives to user to option to view the survey results or to take the survey.
