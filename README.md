@@ -2,7 +2,7 @@
 <image src="assets/readme-files/main-image.png" width="600px"></image><br>
 This Breakfast Survey and Analysis project has been built to give users insights into breakfast habits of people based on Gender and Age Group. There are two core aspects to this program, the option to view the results of the survey, and the option to take the survey to contribute to the data. 
 
-This project was built as my 3rd portfolio project following completion of the Code Institute Python module. 
+This project was built as my 3rd portfolio project following completion of the Code Institute Python module. It uses mock data to demonstrate the program's functionality. 
 
 The project can be viewed here: https://breakfast-survey.herokuapp.com/
 
