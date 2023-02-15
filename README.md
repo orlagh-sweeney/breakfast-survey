@@ -1,4 +1,5 @@
 # Breakfast Survey and Analysis
+<image src="assets/readme-files/main-image.png" width="600px"></image>
 This Breakfast Survey and Analyis project has been built to give users insights into breakfast habits of people based on Gender and Age Group. There are two core aspects to this program, the option to view the results of the survey and the option to take the survey to contribute to the data. 
 
 This project was built as my 3rd portfolio project following completion of the Code Institute Python module. 
@@ -71,6 +72,7 @@ If a user answers no to 'Do you eat breakfast?', the survey ends after they expl
 ### Flowchart
 [Lucid](https://lucid.app/documents#/dashboard) was used in the planning stage of the project to plan the logic and data flow. 
 The flowchart does not include every validation as it would make the chart too cluttered, however every time user input is required validation has been used.
+<image src="assets/readme-files/flowchart.png"></image>
 
 ## Features
 
@@ -81,32 +83,33 @@ The flowchart does not include every validation as it would make the chart too c
 - It gives to user to option to view the survey results or to take the survey.
 
 ### View Results by Gender or Age Group
-<image src=""></image>
+<image src="assets/readme-files/view-results-by.png" width="600px"></image>
 - This section asks the user if they want to view the survey results by gender or age group.
 
 ### Display Results by Question
-<image src=""></image>
+<image src="assets/readme-files/select-question-to-view.png" width="600px"></image>
+<image src="assets/readme-files/display-results.png" width="600px"></image>
 - This section prompts the user to select a question in order to see the results. 
 - It displays the results in table format along with the question.
 - There is also the option to exit this section and return to the beginning of the program.
 
 ### Take Survey 
-<image src=""></image>
+<image src="assets/readme-files/display-survey-questions.png" width="600px"></image>
 - This displays the survey questions and answer options to the user. 
 
 ### Review Answers: Submit or Retake
-<image src=""></image>
+<image src="assets/readme-files/display-users-answers.png" width="600px"></image>
 - This displays the answer that the user gave for each question.
 - The user is asked to review and submit their answers.
 - The user also has the option to re-take the survey, in this case the survey reloads. 
 
 ### Update Worksheet and End Program
-<image src=""></image>
+<image src="assets/readme-files/answers-submitted.png" width="600px"></image>
 - This section informs the user that their survey answers were successfully submitted. 
 - The user is then asked if they want to view the survey results or end the program.
 
 ### Goodbye
-<image src=""></image>
+<image src="assets/readme-files/goodbye-message.png" width="600px"></image>
 - This section displays a googbye message to the user.
 - It also gives the option for the user to restart the program if they change their mind. 
 
@@ -141,7 +144,12 @@ The flowchart does not include every validation as it would make the chart too c
     - The program gives me the options to exit the program while viewing results or after taking the survey.
 
 ### Code Validation
-The codes passes through the Code Institute PEP8 Linter with no errors. 
+The codes passes through the Code Institute PEP8 Linter with no errors.<br>
+<image src="assets/readme-files/ci-pylint.png" width="600px"></image>
+
+Examples of errors can be found below. All errors were resovled.
+- Example 1: Lines too long <br> <image src="assets/readme-files/error-line-too-long.png" width="600px"></image>
+- Example 2: Naming style errors <br><image src="assets/readme-files/error-naming-style.png" width="600px"></image>
 
 ### Feature Testing
 I have manually tested the following features in Gitpod and in the Code Institute Heroku terminal:
