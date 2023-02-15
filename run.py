@@ -481,11 +481,10 @@ def question_and_log_results(
     # get the string value and append it to users_answers
     index = int(answer)
     logged_answer = options[index-1]
-    print(logged_answer)
     user_answers.append(logged_answer)
-    print(user_answers)
     questions_answered.append(question)
 
+    clear_terminal()
     return user_answers
 
 
