@@ -25,12 +25,12 @@ df = pd.DataFrame(data, columns=headers)
 df.head()
 
 # Colorama colours for the terminal
-red = Fore.RED  # colour for error messages
-yellow = Fore.YELLOW  # colour for instructions
-green = Fore.GREEN  # colour for inputs
-cyan = Fore.CYAN  # colour for tables
-bright = Style.BRIGHT
-reset = Style.RESET_ALL  # resets the colours
+RED = Fore.RED  # colour for error messages
+YELLOW = Fore.YELLOW  # colour for instructions
+GREEN = Fore.GREEN  # colour for inputs
+CYAN = Fore.CYAN  # colour for tables
+BRIGHT = Style.BRIGHT
+RESET = Style.RESET_ALL  # resets the colours
 
 
 def clear_terminal():
@@ -48,11 +48,11 @@ def route_selection(df_raw):
     The loop runs repeatedly until input is valid.
     """
     while True:
-        print(yellow + "To view the survey results, type '1' below." + reset)
-        print(yellow + "To take the survey, type '2' below.\n" + reset)
+        print(YELLOW + "To view the survey results, type '1' below." + RESET)
+        print(YELLOW + "To take the survey, type '2' below.\n" + RESET)
 
         route_choice = input(
-            green + "Type your choice here then press enter:\n" + reset
+            GREEN + "Type your choice here then press enter:\n" + RESET
         )
 
         # selection statement to validate user input choice
@@ -65,8 +65,8 @@ def route_selection(df_raw):
             display_survey()
             break
 
-        print(red + 'Invalid choice. Please try again' + reset)
-        print(red + "You must enter a number such as '1'.\n" + reset)
+        print(RED + 'Invalid choice. Please try again' + RESET)
+        print(RED + "You must enter a number such as '1'.\n" + RESET)
 
 
 # SURVEY ANALYSIS FUNCTIONS
@@ -78,12 +78,12 @@ def results_selection(df_raw):
     The loop runs repeatedly until input is valid.
     """
     while True:
-        print(yellow + "\nPlease select from the following options:\n" + reset)
+        print(YELLOW + "\nPlease select from the following options:\n" + RESET)
         print("1 - View results by Gender")
         print("2 - View results by Age Group\n")
 
         analysis_type = input(
-            green + "Type your choice here then press enter:\n" + reset
+            GREEN + "Type your choice here then press enter:\n" + RESET
         )
 
         # selection statement to validate user input choice
@@ -97,8 +97,8 @@ def results_selection(df_raw):
             question_selection(df_raw, groupby_col='age group')
             break
 
-        print(red + 'Invalid choice. Please try again.' + reset)
-        print(red + "You must enter a number such as '1'.\n" + reset)
+        print(RED + 'Invalid choice. Please try again.' + RESET)
+        print(RED + "You must enter a number such as '1'.\n" + RESET)
 
 
 def question_selection(df_raw, groupby_col):
@@ -110,9 +110,9 @@ def question_selection(df_raw, groupby_col):
     """
     while True:
         print(
-            yellow
+            YELLOW
             + "\nSelect a question from the following options:\n"
-            + reset
+            + RESET
         )
         print("1 - Do you eat breafast?")
         print("1.1 - Why do you not eat breakfast?")
@@ -125,47 +125,47 @@ def question_selection(df_raw, groupby_col):
         print("To retart the program, type 'exit'\n")
 
         choice = input(
-            green + "Type your choice here then press enter:\n" + reset
+            GREEN + "Type your choice here then press enter:\n" + RESET
         )
 
         # selection statement to validate user input choice
         # passes question number choice to display_percentages
         if choice == '1':
             clear_terminal()
-            print(cyan + bright + "Do you eat breafast?" + reset)
+            print(CYAN + BRIGHT + "Do you eat breafast?" + RESET)
             display_percentages(df_raw, groupby_col, '1')
 
         elif choice == '1.1':
             clear_terminal()
-            print(cyan + bright + "Why do you not eat breakfast?" + reset)
+            print(CYAN + BRIGHT + "Why do you not eat breakfast?" + RESET)
             display_percentages(df_raw, groupby_col, '1.1')
 
         elif choice == '2':
             clear_terminal()
             print(
-                cyan + bright + "How many days per week do you eat breakfast?"
-                + reset
+                CYAN + BRIGHT + "How many days per week do you eat breakfast?"
+                + RESET
             )
             display_percentages(df_raw, groupby_col, '2')
 
         elif choice == '3':
             clear_terminal()
-            print(cyan + bright + "Where do you eat breakfast?" + reset)
+            print(CYAN + BRIGHT + "Where do you eat breakfast?" + RESET)
             display_percentages(df_raw, groupby_col, '3')
 
         elif choice == '4':
             clear_terminal()
-            print(cyan + bright + "At what time do you eat breakfast?" + reset)
+            print(CYAN + BRIGHT + "At what time do you eat breakfast?" + RESET)
             display_percentages(df_raw, groupby_col, '4')
 
         elif choice == '5':
             clear_terminal()
-            print(cyan + bright + "What do you drink with breakfast?" + reset)
+            print(CYAN + BRIGHT + "What do you drink with breakfast?" + RESET)
             display_percentages(df_raw, groupby_col, '5')
 
         elif choice == '6':
             clear_terminal()
-            print(cyan + bright + "What do you eat for breakfast?" + reset)
+            print(CYAN + BRIGHT + "What do you eat for breakfast?" + RESET)
             display_percentages(df_raw, groupby_col, '6')
 
         elif choice in ('exit', 'EXIT'):
@@ -173,12 +173,12 @@ def question_selection(df_raw, groupby_col):
             route_selection(df)
 
         else:
-            print(red + "Invalid choice. Please try again." + reset)
+            print(RED + "Invalid choice. Please try again." + RESET)
             print(
-                red + "Enter the question number such as '1' or '1.1'."
-                + reset
+                RED + "Enter the question number such as '1' or '1.1'."
+                + RESET
             )
-            print(red + "To restart the program, type 'exit' .\n" + reset)
+            print(RED + "To restart the program, type 'exit' .\n" + RESET)
 
     return choice
 
@@ -227,8 +227,8 @@ def display_percentages(df_raw, groupby_col, question_num):
     # prints table with results
     # code from Stackoverflow user Romain
     print(
-        cyan + bright + tabulate(wide_table, headers='keys', tablefmt='psql')
-        + reset
+        CYAN + BRIGHT + tabulate(wide_table, headers='keys', tablefmt='psql')
+        + RESET
     )
 
 
@@ -258,7 +258,7 @@ def end_program():
     Requests input from the user to restart the program.
     The loop runs repeatedly until input is valid.
     """
-    print(yellow + """\
+    print(YELLOW + """\
  ## ##    ## ##    ## ##   ### ##   ### ##   ##  ##   ### ###
 ##   ##  ##   ##  ##   ##   ##  ##   ##  ##  ##  ##    ##  ##
 ##       ##   ##  ##   ##   ##  ##   ##  ##  ##  ##    ##
@@ -266,14 +266,14 @@ def end_program():
 ##   ##  ##   ##  ##   ##   ##  ##   ##  ##    ##      ##
 ##   ##  ##   ##  ##   ##   ##  ##   ##  ##    ##      ##  ##
  ## ##    ## ##    ## ##   ### ##   ### ##     ##     ### ###
-    """ + reset)
+    """ + RESET)
 
     while True:
         print('Not ready to leave yet?')
-        print("Type '1' below restart the program.\n")
+        print(YELLOW + "Type '1' below restart the program.\n" + RESET)
 
         choice = input(
-            green + "Type your choice here then press enter:\n" + reset
+            GREEN + "Type your choice here then press enter:\n" + RESET
         )
 
         # selection statement to validate user input choice
@@ -281,8 +281,8 @@ def end_program():
             clear_terminal()
             main(df)
 
-        print(red + "Invalid choice. Please try again." + reset)
-        print(red + "You must enter a number such as '1'.\n" + reset)
+        print(RED + "Invalid choice. Please try again." + RESET)
+        print(RED + "You must enter a number such as '1'.\n" + RESET)
 
     return choice
 
@@ -298,11 +298,11 @@ def end_survey():
         print('Your answers have been successfully submitted.')
         print('Thank you for taking the time to complete the survey.\n')
         print('Would you like to view the survey results?')
-        print(yellow + 'To view the survey results, type 1.')
-        print('To end the program, type 2.\n' + reset)
+        print(YELLOW + 'To view the survey results, type 1.')
+        print('To end the program, type 2.\n' + RESET)
 
         choice = input(
-            green + "Type your choice here then press enter:\n" + reset
+            GREEN + "Type your choice here then press enter:\n" + RESET
         )
 
         # selection statement to validate user input choice
@@ -315,8 +315,8 @@ def end_survey():
             end_program()
             break
 
-        print(red + "Invalid choice. Please try again." + reset)
-        print(red + "You must enter a number such as '1'.\n" + reset)
+        print(RED + "Invalid choice. Please try again." + RESET)
+        print(RED + "You must enter a number such as '1'.\n" + RESET)
 
     return choice
 
@@ -338,13 +338,13 @@ def submit_survey(questions_answered, user_answers):
         # if the answer is '' do not display the question
         if (user_answer == '') and (question_answered == ''):
             continue
-        print(f"{question_answered}: {yellow}{user_answer}{reset}")
+        print(f"{question_answered}: {YELLOW}{user_answer}{RESET}")
 
     while True:
-        print(yellow + '\nTo submit your answers, type 1 below.')
-        print('To re-take the survey, type 2 below.\n' + reset)
+        print(YELLOW + '\nTo submit your answers, type 1 below.')
+        print('To re-take the survey, type 2 below.\n' + RESET)
         choice = input(
-            green + "Type your choice here then press enter:\n" + reset
+            GREEN + "Type your choice here then press enter:\n" + RESET
         )
 
         # selection statement to validate user input choice
@@ -357,8 +357,8 @@ def submit_survey(questions_answered, user_answers):
             clear_terminal()
             display_survey()
 
-        print(red + "Invalid choice. Please try again." + reset)
-        print(red + "You must enter a number such as '1'.\n" + reset)
+        print(RED + "Invalid choice. Please try again." + RESET)
+        print(RED + "You must enter a number such as '1'.\n" + RESET)
 
     return choice
 
@@ -461,22 +461,22 @@ def question_and_log_results(
     """
     # stores valid input options using the enumerate values
     valid = []
-    print(yellow + f'\n{question}\n' + reset)
+    print(YELLOW + f'\n{question}\n' + RESET)
     # allocates a number to the answer options for the user to choose from
     # enumerate code from Stackoverflow user Leejay Schmidt
     for (i, option) in enumerate(options, start=1):
         i = str(i)
         valid.append(i)
         print(f"{i}: {option}")
-    answer = input(green + '\nType your answer choice here:\n' + reset)
+    answer = input(GREEN + '\nType your answer choice here:\n' + RESET)
     # validates user input against the enumerate values
     # code uses solution from Tutorial Eyehunt by Rohit.
     while answer not in valid:
         print(
-            red + f'Invalid choice, you must enter a number from: {valid}'
-            + reset
+            RED + f'Invalid choice, you must enter a number from: {valid}'
+            + RESET
         )
-        answer = input(green + 'Type your answer choice here:\n' + reset)
+        answer = input(GREEN + 'Type your answer choice here:\n' + RESET)
     # uses the index of the answer option in the q_and_o dictionary to
     # get the string value and append it to users_answers
     index = int(answer)
@@ -492,7 +492,7 @@ def welcome():
     """
     Displays a welcome message and introduces the survey
     """
-    print(yellow + """\
+    print(YELLOW + """\
                              #        #                   #
  ####                        #       ###                  #
  #   #                       #  #    #                   ###
@@ -509,7 +509,7 @@ def welcome():
          ##     ###   #       ##     ###     ##
                                            #  #
                                             ##
-    """ + reset)
+    """ + RESET)
     print(
         """
 Welcome to the Breakfast Survey! \n
