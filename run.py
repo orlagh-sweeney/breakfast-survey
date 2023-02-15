@@ -43,8 +43,9 @@ def clear_terminal():
 
 def route_selection(df_raw):
     """
-    This function allows the user to select if they want
-    to view results or take the survey
+    This function requests input from the user to indicate
+    if they want to view survey results or take the survey.
+    The loop runs repeatedly until input is valid.
     """
     while True:
         print(yellow + "To view the survey results, type '1' below." + reset)
@@ -72,8 +73,9 @@ def route_selection(df_raw):
 
 def results_selection(df_raw):
     """
-    This function allows the user to select if they would like to
-    view results by gender or age group
+    This function requests input from the user to indicate
+    if they would like to view results by gender or age group.
+    The loop runs repeatedly until input is valid.
     """
     while True:
         print(yellow + "\nPlease select from the following options:\n" + reset)
@@ -85,6 +87,7 @@ def results_selection(df_raw):
         )
 
         # selection statement to validate user input choice
+        # passes user choice to question_selection
         if analysis_type == '1':
             clear_terminal()
             question_selection(df_raw, groupby_col='gender')
@@ -100,8 +103,10 @@ def results_selection(df_raw):
 
 def question_selection(df_raw, groupby_col):
     """
-    This function allows the user to selected which question
-    they would like to see the results for
+    This function requests input from the user to indicate which
+    question they would like to see the results for.
+    The loop runs repeatedly while displaying the results until
+    the user chooses to exit.
     """
     while True:
         print(
@@ -124,6 +129,7 @@ def question_selection(df_raw, groupby_col):
         )
 
         # selection statement to validate user input choice
+        # passes question number choice to display_percentages
         if choice == '1':
             clear_terminal()
             print(cyan + bright + "Do you eat breafast?" + reset)
@@ -179,9 +185,10 @@ def question_selection(df_raw, groupby_col):
 
 def display_percentages(df_raw, groupby_col, question_num):
     """
-    This function calculates percentages of each possible answer
-    based on groupby_col i.e. if the users chooses to view results
-    by gender or age group.
+    Receives groupby_col and question_num data based on the users
+    selection.
+    Calculates percentages of each possible answer to a question.
+    Prints a table with the results.
     """
     # Pandas and Numpy are used in this function
     # after question 1.1 show results only for people who eat breakfast
@@ -217,6 +224,7 @@ def display_percentages(df_raw, groupby_col, question_num):
         wide_table.drop(columns="", inplace=True)
     wide_table.fillna('0%', inplace=True)
 
+    # prints table with results
     # code from Stackoverflow user Romain
     print(
         cyan + bright + tabulate(wide_table, headers='keys', tablefmt='psql')
@@ -228,9 +236,9 @@ def display_percentages(df_raw, groupby_col, question_num):
 
 def update_worksheet(user_answers):
     """
-    Add user ID to the start of the user answers list
-    by getting the index and adding 2
-    Update Google Sheets with user answers by
+    Adds a user ID to the start of the user_answers list
+    by getting the index and adding 2.
+    Updates Google Sheets with user answers by
     adding a new row the end of the sheet.
     """
     # Pandas is used here
@@ -246,8 +254,9 @@ def update_worksheet(user_answers):
 
 def end_program():
     """
-    This displays a goodbye message and the
-    option to restart the program
+    Displays a goodbye message.
+    Requests input from the user to restart the program.
+    The loop runs repeatedly until input is valid.
     """
     print(yellow + """\
  ## ##    ## ##    ## ##   ### ##   ### ##   ##  ##   ### ###
@@ -280,8 +289,10 @@ def end_program():
 
 def end_survey():
     """
-    This displays a thank you message to the user and
-    an option to view the survey results
+    This displays a thank you message to the user.
+    Requests input from the user to either view the survey results
+    or end the program.
+    The loop runs repeatedly until input is valid.
     """
     while True:
         print('Your answers have been successfully submitted.')
@@ -312,8 +323,10 @@ def end_survey():
 
 def submit_survey(questions_answered, user_answers):
     """
-    Displays the users answers and allows the user to submit
-    their results or take the survey again
+    Receives and displays the users survey answers.
+    Requests input from the user to submit their answers or
+    to take the survey again.
+    The loop runs repeatedly until input is valid.
     """
     print('Thank you taking this survey.\n')
     print('Please review your answers then submit or retake the survey:\n')
@@ -353,9 +366,9 @@ def submit_survey(questions_answered, user_answers):
 def display_survey():
     """
     This function iterates through a dictionary and pushes questions
-    and answer options to the user based on their previous answers.
-    If the user answers 'Yes' to question 3, question 4 is skipped
-    If the user answers 'No' to question 3, they answer question 5
+    and answer options to the user based on their previous answers:
+    If the user answers 'Yes' to question 3, question 4 is skipped.
+    If the user answers 'No' to question 3, they answer question 4
     then the survey ends.
     """
     q_and_o = {
@@ -368,7 +381,7 @@ def display_survey():
             'options': ['Male', 'Female']
         },
         3: {
-            'question': 'Do you eat breakfast',
+            'question': 'Do you eat breakfast?',
             'options': ['Yes', 'No']
         },
         4: {
@@ -399,6 +412,7 @@ def display_survey():
         },
     }
 
+    # stores user answers and questions answered
     user_answers = []
     questions_answered = []
 
@@ -441,8 +455,9 @@ def question_and_log_results(
     questions_answered
 ):
     """
-    This function displays the questions and answer options to the user
-    It validates users input and stores answers from the user
+    Receives questions and answers to be displayed to the user.
+    Requests and validates input from the user.
+    Stores answers from the user.
     """
     # stores valid input options using the enumerate values
     valid = []
@@ -476,7 +491,7 @@ def question_and_log_results(
 
 def welcome():
     """
-    Displays a welcome message and introduction to the survey
+    Displays a welcome message and introduces the survey
     """
     print(yellow + """\
                              #        #                   #
@@ -499,7 +514,7 @@ def welcome():
     print(
         """
 Welcome to the Breakfast Survey! \n
-This survey analyses breakfast eating habits based on gender and age. The
+This survey analyses breakfast habits based on gender and age. The
 program allows you to view the survey results or add to the data by completing
 the survey. \n
 To submit an answer to a survey question, or to complete an action such as the
