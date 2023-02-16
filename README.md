@@ -1,6 +1,8 @@
 # Breakfast Survey and Analysis
 <image src="assets/readme-files/main-image.png" width="600px"></image><br>
-This Breakfast Survey and Analysis project has been built to give users insights into breakfast habits of people based on Gender and Age Group. There are two core aspects to this program, the option to view the results of the survey, and the option to take the survey to contribute to the data. 
+This Breakfast Survey and Analysis project has been built to give users insights into breakfast habits of people based on Gender and Age Group. There are two core aspects to this program:
+1. The option to view the results of the survey.
+2. The option to take the survey to contribute to the data. 
 
 This project was built as my 3rd portfolio project following completion of the Code Institute Python module. It uses mock data to demonstrate the program's functionality. 
 
@@ -67,7 +69,7 @@ The program uses a series of functions to display the survey results; results_se
 
 When taking the survey, the users answers are stored in a variable called user_answers which updates each time a question is answered. After the last question is answered the user is asked to review and submit their results or take the quiz again. If the user clicks the submit the data is pushed to the Google Sheets worksheet. 
 
-If a user answers no to 'Do you eat breakfast?', the survey ends after they explain why. Furthermore, their data is not used when analysing the remaining questions, meaning that questions 5-9 are only analysed based on people who eat breafast. 
+If a user answers 'no' to 'Do you eat breakfast?', the survey ends after they explain why. Furthermore, their data is not used when analysing the remaining questions, meaning that questions 5-9 are only analysed based on people who eat breafast. 
 
 A screenshot of the Google Sheets worksheet can be found below:
 
@@ -162,13 +164,13 @@ Examples of errors encountered during development are demonstrated below. All er
 I have manually tested the following features in Gitpod and in the Code Institute Heroku terminal:
 TEST       | DESIRED RESULT          | PASS/FAIL |
 ---------- | ----------------------- | --------- |
-Welcome Message | When the program first runs the welcome message and route selection options are displayed. | PASS
+Welcome Message | When the program first runs, the welcome message and route selection options are displayed. | PASS
 Route Selection | When '1' is typed in the terminal, results_selection is called and the user is asked how they want to view the results. When '2' is typed in the terminal, display_survey is called and the user is brought to the survey. | PASS 
-Route Selection Validation | If the user types anything other than '1' or '2' they are shown an error message and asked to try again. | PASS
+Route Selection Validation | If the user types anything other than '1' or '2', they are shown an error message and asked to try again. | PASS
 Results Selection | When '1' is typed in the terminal, the program loads data on Gender. When '2' is typed in the terminal, the program loads data on Age Group. | PASS
-Results Selection Validation | If the user types anything other than '1' or '2' they are shown an error message and asked to try again. | PASS
-Results Question Selection | If the user types anything form (1, 1.1, 2, 3, 4, 5 or 6) they are shown the data for the corresponding question. If they type 'exit' or 'EXIT' the program ends and they return to the Route Selection area. | PASS
-Results Question Selection Validation | If the user types anything other than (1, 1.1, 2, 3, 4, 5, 6, exit or EXIT) they are shown an error message and asked to try again. | PASS
+Results Selection Validation | If the user types anything other than '1' or '2', they are shown an error message and asked to try again. | PASS
+Results Question Selection | If the user types anything from (1, 1.1, 2, 3, 4, 5 or 6), they are shown the data for the corresponding question. If they type 'exit' or 'EXIT', the program ends and they return to the Route Selection area. | PASS
+Results Question Selection Validation | If the user types anything other than (1, 1.1, 2, 3, 4, 5, 6, exit or EXIT), they are shown an error message and asked to try again. | PASS
 Display Survey | The survey loads each question with the correct set of answers options. | PASS
 Survey Answer Selection Validation | If the users enters an invalid input they are shown an error message and asked to try again. The error message displays a list of numbers from which they can choose. | PASS
 If 'Do you eat breafast?' = 'No' | The user is presented with a follow up question, 'Why do you not eat breakfast', after this the survey ends. | PASS
@@ -180,20 +182,20 @@ Submit Results | When the user submits their results the update_worksheet functi
 End Survey | When the user submits their answers the end_survey function is called. They are asked if they want to view the survey results by typing '1' or end the program by typing '2'.  | PASS
 End Survey Validation | If the user types anything other than '1' or '2' they are shown an error message and asked to try again. | PASS
 End Program | If the users chooses to end the program, the end_program function is called which displays a goodbye message and an option to restart the program by typing '1'. | PASS
-End Program Validation | If the user types anything other than '1' they are shown an error message and asked to try again. | PASS
+End Program Validation | If the user types anything other than '1', they are shown an error message and asked to try again. | PASS
 Restart Program | If the user chooses to restart the program, the main function is called and the user is brought back to the beginning of the program | PASS
 
 ### Bugs
 1. Answering survey questions: 
-- When the user submitted their answer to a survey question, there was an error when comparing and validating user input with the valid answers. To validate the users survey answers, the program compares the users input (1, 2, 3 etc.) with the enumerate values assigned to the answer option which are stored in a variable called Valid each time a new question loads. The enumerate value is an integer and the user input from the terminal is a string, this caused an error when validating. To fix this I converted the enumerate values to a string before appending these values to the Valid list. 
-3. Displaying the users survey answers:
+- When the user submitted their answer to a survey question, there was an error when comparing and validating user input with the valid answers. To validate the users survey answers, the program compares the users input (1, 2, 3 etc.) with the enumerate values assigned to the answer option which are stored in a list called 'Valid' each time a new question loads. The enumerate value is an integer and the user input from the terminal is a string, this caused an error when validating. To fix this I converted the enumerate values to a string before appending these values to the 'Valid' list. 
+2. Displaying the users survey answers:
 - There was a bug when displaying the users survey answers in the terminal. This was due to omitting an empty string in the questions_anwswered list for question 4, and because the print statement was in the wrong line. These errors were fixed and the users answers are displayed as expected.
-2. Exit 'View Results':
+3. Exit 'View Results':
 - When the user was finished viewing survey results and wanted to exit this function, the 'exit' or 'EXIT' inputs were not working so there was no way to exit the program. I changed the code from "else choice = “exit” or ‘EXIT’" to "else choice in (‘exit’ ‘EXIT)" which solved the issue. The user is now able to exit this section of the program. 
 
 ## Deployment
 The program was developed in Gitpod. It was then commited and pushed to GitHub.
-The finished project was deployed in Heroku using the Code Institue Python Terminal for display purposes. 
+The finished project was deployed in Heroku using the Code Institute Python Terminal for display purposes. 
 Deployment to Heroku was completed using the following steps: 
 1. Run 'pip3 freeze > requirements.txt' in the terminal to add a list of dependencies to requirements.txt
 2. Commit these changes and push to GitHub.
