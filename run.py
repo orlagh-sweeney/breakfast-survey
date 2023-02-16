@@ -122,7 +122,7 @@ def question_selection(df_raw, groupby_col):
         print("5 - What do you drink with breakfast?")
         print("6 - What do you eat for breakfast?\n")
 
-        print("To retart the program, type 'exit'\n")
+        print("To restart the program, type 'exit'\n")
 
         choice = input(
             GREEN + "Type your choice here then press enter:\n" + RESET
@@ -460,7 +460,9 @@ def question_and_log_results(
         i = str(i)
         valid.append(i)
         print(f"{i}: {option}")
-    answer = input(GREEN + '\nType your answer choice here:\n' + RESET)
+    answer = input(
+        GREEN + '\nType your choice here then press enter:\n' + RESET
+    )
     # validates user input against the enumerate values
     # code uses solution from Tutorial Eyehunt by Rohit.
     while answer not in valid:
@@ -468,7 +470,9 @@ def question_and_log_results(
             RED + f'Invalid choice, you must enter a number from: {valid}'
             + RESET
         )
-        answer = input(GREEN + 'Type your answer choice here:\n' + RESET)
+        answer = input(
+            GREEN + 'Type your answer choice here then press enter:\n' + RESET
+        )
     # uses the index of the answer option in the q_and_o dictionary to
     # get the string value and append it to users_answers
     index = int(answer)
