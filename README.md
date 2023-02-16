@@ -242,7 +242,7 @@ Documentation and PyPI resources for Pandas, Numpy, Tabulate and Colorama were r
 - [Tabulate - PyPI](https://pypi.org/project/tabulate/) 
 - [Colorama - PyPI](https://pypi.org/project/colorama/) 
 
-To validate user input for survey answers in the question_and_log_results function I used a solution from [Tutorial Eyehunt by Rohit](https://tutorial.eyehunts.com/python/python-while-loop-input-validation-example-code/).
+To validate user input for survey answers in the question_and_log_results function I used a solution from an EyeHunts Tutorial by the author [Rohit](https://tutorial.eyehunts.com/python/python-while-loop-input-validation-example-code/).
 
 To see how to correctly set up Pandas with Google Sheets I used solution by GitHub user [Asha Ponnada](https://github.com/Asha-ai/googlespredsheets/blob/master/googlesheet_as_pandasdf.ipynb).
 

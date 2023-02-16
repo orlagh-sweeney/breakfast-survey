@@ -464,7 +464,7 @@ def question_and_log_results(
         GREEN + '\nType your choice here then press enter:\n' + RESET
     )
     # validates user input against the enumerate values
-    # code uses solution from Tutorial Eyehunt by Rohit.
+    # code uses solution from an EyeHunts Tutorial by author Rohit.
     while answer not in valid:
         print(
             RED + f'Invalid choice, you must enter a number from: {valid}'
